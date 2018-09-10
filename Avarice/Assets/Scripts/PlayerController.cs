@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour {
     public float lookSensitivity = 10.0f;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
+    public int iTurnUndeadUses = 1;
+    public int iCoinCount = 0;
+
+    [SerializeField]
+    private int iCoinDistractionCost = 50;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -34,6 +39,10 @@ public class PlayerController : MonoBehaviour {
 
         SetMovement();
         BleedPlayer();
+
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            CreateCoinPileDistraction();
+        }
 
     }
 
@@ -78,5 +87,15 @@ public class PlayerController : MonoBehaviour {
 
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
+    }
+
+    // Throws coins out as a distraction
+    void CreateCoinPileDistraction() {
+        if(iCoinCount >= iCoinDistractionCost) {
+            iCoinCount -= iCoinDistractionCost;
+            GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
+            distraction.transform.position = transform.position + transform.forward * 2;
+            distraction.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
+        }
     }
 }
