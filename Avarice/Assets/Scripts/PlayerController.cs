@@ -40,8 +40,11 @@ public class PlayerController : MonoBehaviour {
         SetMovement();
         BleedPlayer();
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKeyDown(KeyCode.Space)) { // Default key for now
             CreateCoinPileDistraction();
+        }
+        if(Input.GetKeyDown(KeyCode.T)) {
+            TurnUndead();
         }
 
     }
@@ -76,6 +79,7 @@ public class PlayerController : MonoBehaviour {
         cameraRotation = Input.GetAxisRaw("Mouse Y") * lookSensitivity;
     }
 
+    // Damages the player's health in set intervals.
     private void BleedPlayer() {
         fBleedCounter += Time.deltaTime;
         if(fBleedCounter >= fBleedInterval) {
@@ -96,6 +100,16 @@ public class PlayerController : MonoBehaviour {
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
             distraction.transform.position = transform.position + transform.forward * 2;
             distraction.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
+            PlayerUIController.UpdateCoinText(iCoinCount);
+        }
+    }
+
+    // Turns undead, making enemies flee the player for a short time
+    void TurnUndead() {
+        if(iTurnUndeadUses > 0) {
+            --iTurnUndeadUses;
+            // Call static game manager function
+            Debug.Log(iTurnUndeadUses);
         }
     }
 }
