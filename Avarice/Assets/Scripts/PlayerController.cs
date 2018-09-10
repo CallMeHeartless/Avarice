@@ -8,6 +8,13 @@ public class PlayerController : MonoBehaviour {
     public int iLife = 180;
     public float fSpeed = 5.0f;
     public float lookSensitivity = 10.0f;
+    public float fBleedInterval = 10.0f;
+    public int iBleedAmount = 10;
+    public int iTurnUndeadUses = 1;
+    public int iCoinCount = 0;
+
+    [SerializeField]
+    private int iCoinDistractionCost = 50;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -15,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     private float cameraRotation = 0.0f;
     private float currentCameraRotation = 0.0f;
     private Camera _camera;
+    private float fBleedCounter = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -29,17 +37,15 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        // Set movement
-        Vector3 forwardMovement = transform.forward * Input.GetAxisRaw("Vertical");
-        Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
+        SetMovement();
+        BleedPlayer();
 
-        velocity = (forwardMovement + sideMovement).normalized * fSpeed;
-
-        // Set rotation
-        rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * lookSensitivity;
-
-        // Camera rotation 
-        cameraRotation = Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+        if(Input.GetKeyDown(KeyCode.Space)) { // Default key for now
+            CreateCoinPileDistraction();
+        }
+        if(Input.GetKeyDown(KeyCode.T)) {
+            TurnUndead();
+        }
 
     }
 
@@ -56,5 +62,54 @@ public class PlayerController : MonoBehaviour {
             _camera.transform.localEulerAngles = new Vector3(currentCameraRotation, 0, 0);
         }
 
+    }
+
+    // Determines variables used for player movement and camera rotation
+    private void SetMovement() {
+        // Set movement
+        Vector3 forwardMovement = transform.forward * Input.GetAxisRaw("Vertical");
+        Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
+
+        velocity = (forwardMovement + sideMovement).normalized * fSpeed;
+
+        // Set rotation
+        rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * lookSensitivity;
+
+        // Camera rotation 
+        cameraRotation = Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+    }
+
+    // Damages the player's health in set intervals.
+    private void BleedPlayer() {
+        fBleedCounter += Time.deltaTime;
+        if(fBleedCounter >= fBleedInterval) {
+            fBleedCounter = 0.0f;
+            iLife -= iBleedAmount;
+            Debug.Log(iLife);
+        }
+    }
+
+    public void DamagePlayer(int _iDamage) {
+        iLife -= _iDamage;
+    }
+
+    // Throws coins out as a distraction
+    void CreateCoinPileDistraction() {
+        if(iCoinCount >= iCoinDistractionCost) {
+            iCoinCount -= iCoinDistractionCost;
+            GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
+            distraction.transform.position = transform.position + transform.forward * 2;
+            distraction.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
+            PlayerUIController.UpdateCoinText(iCoinCount);
+        }
+    }
+
+    // Turns undead, making enemies flee the player for a short time
+    void TurnUndead() {
+        if(iTurnUndeadUses > 0) {
+            --iTurnUndeadUses;
+            // Call static game manager function
+            Debug.Log(iTurnUndeadUses);
+        }
     }
 }
