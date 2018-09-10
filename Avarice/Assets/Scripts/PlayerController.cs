@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     public int iLife = 180;
     public float fSpeed = 5.0f;
     public float lookSensitivity = 10.0f;
+    public float fBleedInterval = 10.0f;
+    public int iBleedAmount = 10;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private float cameraRotation = 0.0f;
     private float currentCameraRotation = 0.0f;
     private Camera _camera;
+    private float fBleedCounter = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -29,17 +32,8 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        // Set movement
-        Vector3 forwardMovement = transform.forward * Input.GetAxisRaw("Vertical");
-        Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
-
-        velocity = (forwardMovement + sideMovement).normalized * fSpeed;
-
-        // Set rotation
-        rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * lookSensitivity;
-
-        // Camera rotation 
-        cameraRotation = Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+        SetMovement();
+        BleedPlayer();
 
     }
 
@@ -56,5 +50,33 @@ public class PlayerController : MonoBehaviour {
             _camera.transform.localEulerAngles = new Vector3(currentCameraRotation, 0, 0);
         }
 
+    }
+
+    // Determines variables used for player movement and camera rotation
+    private void SetMovement() {
+        // Set movement
+        Vector3 forwardMovement = transform.forward * Input.GetAxisRaw("Vertical");
+        Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
+
+        velocity = (forwardMovement + sideMovement).normalized * fSpeed;
+
+        // Set rotation
+        rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * lookSensitivity;
+
+        // Camera rotation 
+        cameraRotation = Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+    }
+
+    private void BleedPlayer() {
+        fBleedCounter += Time.deltaTime;
+        if(fBleedCounter >= fBleedInterval) {
+            fBleedCounter = 0.0f;
+            iLife -= iBleedAmount;
+            Debug.Log(iLife);
+        }
+    }
+
+    public void DamagePlayer(int _iDamage) {
+        iLife -= _iDamage;
     }
 }
