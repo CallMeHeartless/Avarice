@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour {
         if(iCoinCount >= iCoinDistractionCost) {
             iCoinCount -= iCoinDistractionCost;
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
-            distraction.transform.position = transform.position + transform.forward * 2;
+            distraction.transform.position = transform.position + transform.forward;
             distraction.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
             PlayerUIController.UpdateCoinText(iCoinCount);
         }
