@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour {
         if(fBleedCounter >= fBleedInterval) {
             fBleedCounter = 0.0f;
             DamagePlayer(iBleedAmount);
-            Debug.Log(iLife);
         }
     }
 
@@ -101,8 +100,8 @@ public class PlayerController : MonoBehaviour {
         if(iCoinCount >= iCoinDistractionCost) {
             iCoinCount -= iCoinDistractionCost;
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
-            distraction.transform.position = transform.position + transform.forward;
-            distraction.GetComponent<Rigidbody>().AddForce(transform.forward * 10, ForceMode.Impulse);
+            distraction.transform.position = transform.position + Vector3.up* 0.2f + transform.forward * 0.1f;
+            distraction.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * 10, ForceMode.Impulse);
             PlayerUIController.UpdateCoinText(iCoinCount);
         }
     }
@@ -115,6 +114,13 @@ public class PlayerController : MonoBehaviour {
             GameManager.TurnUndead(fTurnDuration);
             Debug.Log(iTurnUndeadUses);
         }
+    }
+
+    // Adds coins to the players inventory, then directs game manager to update based on new total
+    public void AddCoinsToInventory(int _iCoinValue) {
+        iCoinCount += _iCoinValue;
+        // Update game manager with player's new current coin count
+        GameManager.PlayerCollectedCoins(iCoinCount);
     }
 
 }
