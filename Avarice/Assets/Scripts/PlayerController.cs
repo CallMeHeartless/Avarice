@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour {
 
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
+        PlayerUIController.UpdateHealthSlider(iLife);
     }
 
     // Throws coins out as a distraction
