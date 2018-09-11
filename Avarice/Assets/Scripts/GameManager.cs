@@ -41,7 +41,9 @@ public class GameManager : MonoBehaviour {
     // Call to add coins to the player's current tribute total for this life
     public static void AddCoinsToTribute(int _iCoinAmount) {
         iTributeTotal += _iCoinAmount;
-
+        if(iTributeTotal > PlayerPrefs.GetInt("HighScore", 0)) {
+            UpdateHighScore(iTributeTotal);
+        }
         // Reset coins on player
         iCoinsOnPlayer = 0;
         // Reset AI??
@@ -57,5 +59,11 @@ public class GameManager : MonoBehaviour {
 
         // Update total coins on player
         iCoinsOnPlayer = _iPlayerCoinTotal;
+    }
+
+    public static void UpdateHighScore(int _iNewHighScore) {
+        // Update storage
+        PlayerPrefs.SetInt("HighScore", _iNewHighScore);
+        // Update text
     }
 }
