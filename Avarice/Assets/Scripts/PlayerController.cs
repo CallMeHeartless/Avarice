@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
     public int iTurnUndeadUses = 1;
+    public float fTurnDuration = 10.0f;
     public int iCoinCount = 0;
 
     [SerializeField]
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour {
         if(iTurnUndeadUses > 0) {
             --iTurnUndeadUses;
             // Call static game manager function
+            GameManager.TurnUndead(fTurnDuration);
             Debug.Log(iTurnUndeadUses);
         }
     }
