@@ -3,6 +3,31 @@ guid: 83ea55b074e64fb49bfe5a28c48fbd30
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
+    100000: cm_PlayerCharacter
+    100002: Mesh_Arms
+    100004: Mesh_CoinPouch
+    100006: //RootNode
+    100008: Mesh_PlayerSword
+    400000: cm_PlayerCharacter
+    400002: Mesh_Arms
+    400004: Mesh_CoinPouch
+    400006: //RootNode
+    400008: Mesh_PlayerSword
+    2100000: lambert1
+    2100002: M_UE4Man_Body
+    2300000: cm_PlayerCharacter
+    2300002: Mesh_Arms
+    2300004: Mesh_CoinPouch
+    2300006: Mesh_PlayerSword
+    3300000: cm_PlayerCharacter
+    3300002: Mesh_Arms
+    3300004: Mesh_CoinPouch
+    3300006: Mesh_PlayerSword
+    4300000: cm_PlayerCharacter
+    4300002: Mesh_Arms
+    4300004: Mesh_PlayerSword
+    4300006: Mesh_CoinPouch
+    9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -56,7 +81,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
