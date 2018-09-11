@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 322e4be5242b81f41ba7ffa98314e9b9
+guid: e5975bc5771101e46959ee587a6dbbae
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Mesh_Arch_Big_Middle1
+    4300000: Mesh_Corner_Arch_Allsides
   externalObjects: {}
   materials:
     importMaterials: 1
