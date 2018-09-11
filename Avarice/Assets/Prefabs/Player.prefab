@@ -269,6 +269,7 @@ MonoBehaviour:
   fBleedInterval: 10
   iBleedAmount: 10
   iTurnUndeadUses: 1
+  fTurnDuration: 10
   iCoinCount: 500
   iCoinDistractionCost: 50
 --- !u!136 &136475680517555214

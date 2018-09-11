@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 114184435100052654}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 114392646206119478}
 --- !u!114 &114228970746074962
 MonoBehaviour:
   m_ObjectHideFlags: 1

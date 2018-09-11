@@ -16,7 +16,6 @@ public class PlayerUIController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         instance = this;
-        healthBar.maxValue = PlayerController.instance.iLife;
 	}
 	
 	// Update is called once per frame
@@ -32,5 +31,9 @@ public class PlayerUIController : MonoBehaviour {
         instance.healthBar.value = _iCurrentHealth;
     }
 
+    public static void SetHealthSliderMaxValue(int _iMaxLife) {
+        instance.healthBar.maxValue = _iMaxLife;
+        instance.healthBar.value = _iMaxLife;
+    }
     
 }

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
         instance = this;
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
+        PlayerUIController.SetHealthSliderMaxValue(iLife);
 	}
 	
 	// Update is called once per frame
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour {
         fBleedCounter += Time.deltaTime;
         if(fBleedCounter >= fBleedInterval) {
             fBleedCounter = 0.0f;
-            iLife -= iBleedAmount;
+            DamagePlayer(iBleedAmount);
             Debug.Log(iLife);
         }
     }
@@ -115,4 +116,5 @@ public class PlayerController : MonoBehaviour {
             Debug.Log(iTurnUndeadUses);
         }
     }
+
 }
