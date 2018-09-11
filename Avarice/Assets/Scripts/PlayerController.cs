@@ -123,4 +123,10 @@ public class PlayerController : MonoBehaviour {
         GameManager.PlayerCollectedCoins(iCoinCount);
     }
 
+    public static int PayTribute() {
+        int temp = instance.iCoinCount;
+        instance.iCoinCount = 0;
+        return temp;
+    }
+
 }
