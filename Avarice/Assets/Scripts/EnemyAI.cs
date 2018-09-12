@@ -8,6 +8,8 @@ public class EnemyAI : MonoBehaviour {
     private GameObject player;
     public NavMeshAgent agent;
 
+    private bool bIsStunned = false;
+
     private Ray ray;
     private GameObject coin;
 
@@ -56,8 +58,6 @@ public class EnemyAI : MonoBehaviour {
         player = FindPlayer();
 	}
 
-    
-
     // Update is called once per frame
     void Update () {
 
@@ -87,6 +87,19 @@ public class EnemyAI : MonoBehaviour {
 
         
 
+    }
+
+    public void StunEnemy(float _fDuration) {
+        if (bIsStunned) {
+            return;
+        }
+        bIsStunned = true;
+        StartCoroutine(RemoveStun(_fDuration));
+    }
+
+    private IEnumerator RemoveStun(float _fDuration) {
+        yield return new WaitForSeconds(_fDuration);
+        bIsStunned = false;
     }
 
 }
