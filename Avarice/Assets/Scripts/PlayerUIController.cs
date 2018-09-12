@@ -12,7 +12,10 @@ public class PlayerUIController : MonoBehaviour {
     [SerializeField]
     private Slider healthBar;
     [SerializeField]
+    private Text currentScoreText;
+    [SerializeField]
     private Text highScoreText;
+
 
 
 	// Use this for initialization
@@ -37,6 +40,10 @@ public class PlayerUIController : MonoBehaviour {
     public static void SetHealthSliderMaxValue(int _iMaxLife) {
         instance.healthBar.maxValue = _iMaxLife;
         instance.healthBar.value = _iMaxLife;
+    }
+
+    public static void UpdateCurrentTributeText(int _iTributeValue) {
+        instance.currentScoreText.text = "Tribute: " + _iTributeValue.ToString();
     }
 
     public static void UpdateHighScoreText() {

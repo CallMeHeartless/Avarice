@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
     // Call to add coins to the player's current tribute total for this life
     public static void AddCoinsToTribute(int _iCoinAmount) {
         iTributeTotal += _iCoinAmount;
+        PlayerUIController.UpdateCurrentTributeText(iTributeTotal);
         if(iTributeTotal > PlayerPrefs.GetInt("HighScore", 0)) {
             UpdateHighScore(iTributeTotal);
         }
