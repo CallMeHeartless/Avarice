@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
-    private GameObject player;
+    public GameObject player;
     public NavMeshAgent agent;
 
     private bool bIsStunned = false;
