@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Distraction");
         GameObject closest = null;
-        float distance = Mathf.Infinity;
+        float distance = 200000.0f;
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
