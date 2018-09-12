@@ -279,6 +279,8 @@ GameObject:
   - component: {fileID: 4309991962744190}
   - component: {fileID: 33237744745470154}
   - component: {fileID: 23879554108159232}
+  - component: {fileID: 65666677949377374}
+  - component: {fileID: 114550556404069354}
   m_Layer: 0
   m_Name: Mesh_PlayerSword1:Mesh_PlayerSword
   m_TagString: Untagged
@@ -1584,7 +1586,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571240803437242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.1653624, y: 1.0000001, z: 0.13597709}
+  m_LocalPosition: {x: 0, y: 1.287, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4035063062645330}
@@ -1854,6 +1856,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65666677949377374
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414145341966524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15310232, y: 1.3779825, z: 0.067427784}
+  m_Center: {x: -0.008989707, y: 0.5193894, z: 0.0000008300596}
 --- !u!81 &81150530238080756
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1897,8 +1911,19 @@ MonoBehaviour:
   iBleedAmount: 10
   iTurnUndeadUses: 1
   fTurnDuration: 10
-  iCoinCount: 500
-  iCoinDistractionCost: 50
+  iCoinCount: 0
+  iCoinDistractionCost: 1
+--- !u!114 &114550556404069354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414145341966524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e84ebc4d82b934b8fd291d91def9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136475680517555214
 CapsuleCollider:
   m_ObjectHideFlags: 1
