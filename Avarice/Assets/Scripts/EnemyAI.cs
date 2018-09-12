@@ -5,24 +5,18 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     public NavMeshAgent agent;
 
     private Ray ray;
     private GameObject coin;
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 
     public GameObject FindClosestCoin()
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Distraction");
         GameObject closest = null;
-        float distance = 200000.0f;
+        float distance = 100000.0f;
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
@@ -36,6 +30,33 @@ public class EnemyAI : MonoBehaviour {
         }
         return closest;
     }
+
+    public GameObject FindPlayer()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+        GameObject closest = null;
+        float distance = 100000.0f;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
+
+    // Use this for initialization
+    void Start () {
+        player = FindPlayer();
+	}
+
+    
 
     // Update is called once per frame
     void Update () {
