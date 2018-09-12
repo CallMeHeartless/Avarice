@@ -1,0 +1,319 @@
+fileFormatVersion: 2
+guid: 0a19275281834ac4ca1a1fcdb985cd1c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Base HumanCollarboneBone001
+    100004: Base HumanHead
+    100006: Base HumanLArmCollarbone
+    100008: Base HumanLArmDigit11
+    100010: Base HumanLArmDigit12
+    100012: Base HumanLArmDigit13
+    100014: Base HumanLArmDigit21
+    100016: Base HumanLArmDigit22
+    100018: Base HumanLArmDigit23
+    100020: Base HumanLArmForearm
+    100022: Base HumanLArmPalm
+    100024: Base HumanLArmUpperarm
+    100026: Base HumanLLegCalf
+    100028: Base HumanLLegFoot
+    100030: Base HumanLLegThigh
+    100032: Base HumanNeck1
+    100034: Base HumanNeck2
+    100036: Base HumanPalmBone001
+    100038: Base HumanPelvis
+    100040: Base HumanRCalf
+    100042: Base HumanRCollarbone
+    100044: Base HumanRDigit11
+    100046: Base HumanRDigit12
+    100048: Base HumanRDigit13
+    100050: Base HumanRDigit21
+    100052: Base HumanRDigit22
+    100054: Base HumanRDigit23
+    100056: Base HumanRFoot
+    100058: Base HumanRForearm
+    100060: Base HumanRibcage
+    100062: Base HumanRPalm
+    100064: Base HumanRThigh
+    100066: Base HumanRUpperarm
+    100068: Base HumanSpine1
+    100070: Base HumanSpine2
+    100072: Base HumanSpine3
+    100074: Base HumanSpine4
+    100076: Mesh_Cutlass
+    100078: Mesh_Skeleton
+    400000: //RootNode
+    400002: Base HumanCollarboneBone001
+    400004: Base HumanHead
+    400006: Base HumanLArmCollarbone
+    400008: Base HumanLArmDigit11
+    400010: Base HumanLArmDigit12
+    400012: Base HumanLArmDigit13
+    400014: Base HumanLArmDigit21
+    400016: Base HumanLArmDigit22
+    400018: Base HumanLArmDigit23
+    400020: Base HumanLArmForearm
+    400022: Base HumanLArmPalm
+    400024: Base HumanLArmUpperarm
+    400026: Base HumanLLegCalf
+    400028: Base HumanLLegFoot
+    400030: Base HumanLLegThigh
+    400032: Base HumanNeck1
+    400034: Base HumanNeck2
+    400036: Base HumanPalmBone001
+    400038: Base HumanPelvis
+    400040: Base HumanRCalf
+    400042: Base HumanRCollarbone
+    400044: Base HumanRDigit11
+    400046: Base HumanRDigit12
+    400048: Base HumanRDigit13
+    400050: Base HumanRDigit21
+    400052: Base HumanRDigit22
+    400054: Base HumanRDigit23
+    400056: Base HumanRFoot
+    400058: Base HumanRForearm
+    400060: Base HumanRibcage
+    400062: Base HumanRPalm
+    400064: Base HumanRThigh
+    400066: Base HumanRUpperarm
+    400068: Base HumanSpine1
+    400070: Base HumanSpine2
+    400072: Base HumanSpine3
+    400074: Base HumanSpine4
+    400076: Mesh_Cutlass
+    400078: Mesh_Skeleton
+    2100000: Mesh_Skeleton_initialShadingGroup
+    4300000: Mesh_Skeleton
+    4300002: Mesh_Cutlass
+    7400000: Spawn
+    7400002: run
+    7400004: hit
+    7400006: Recover
+    7400008: attack
+    9500000: //RootNode
+    13700000: Mesh_Cutlass
+    13700002: Mesh_Skeleton
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Spawn
+      takeName: Spawn
+      firstFrame: 10
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: 80
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: hit
+      takeName: hit
+      firstFrame: 120
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Recover
+      takeName: Recover
+      firstFrame: 150
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack
+      takeName: attack
+      firstFrame: 210
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

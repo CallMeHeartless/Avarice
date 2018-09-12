@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public static PlayerController instance;
+    public static bool bIsAttacking = false;
     public int iLife = 180;
     public float fSpeed = 5.0f;
-    public float lookSensitivity = 10.0f;
+    public float flookSensitivity = 10.0f;
+    public float fAttackRate = 0.6f;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
     public int iTurnUndeadUses = 1;
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private int iCoinDistractionCost = 50;
+    //[SerializeField]
+    private Animator anim;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -31,6 +35,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
         PlayerUIController.SetHealthSliderMaxValue(iLife);
+        anim = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +52,11 @@ public class PlayerController : MonoBehaviour {
         }
         if(Input.GetKeyDown(KeyCode.T)) {
             TurnUndead();
+        }
+
+        // Attack
+        if(!bIsAttacking && Input.GetButton("Fire1")) {
+            Attack();
         }
 
     }
@@ -75,10 +85,10 @@ public class PlayerController : MonoBehaviour {
         velocity = (forwardMovement + sideMovement).normalized * fSpeed;
 
         // Set rotation
-        rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * lookSensitivity;
+        rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * flookSensitivity;
 
         // Camera rotation 
-        cameraRotation = Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+        cameraRotation = Input.GetAxisRaw("Mouse Y") * flookSensitivity;
     }
 
     // Damages the player's health in set intervals.
@@ -131,6 +141,19 @@ public class PlayerController : MonoBehaviour {
         instance.iCoinCount = 0;
         PlayerUIController.UpdateCoinText(0);
         return temp;
+    }
+
+    private void Attack() {
+        bIsAttacking = true;
+        // Animation
+
+        // cooldown
+        StartCoroutine(AttackCooldown(fAttackRate));
+    }
+
+    IEnumerator AttackCooldown(float _fAttackCooldown) {
+        yield return new WaitForSeconds(_fAttackCooldown);
+        bIsAttacking = false;
     }
 
 }
