@@ -34,8 +34,9 @@ public class PlayerController : MonoBehaviour {
         instance = this;
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
-        PlayerUIController.SetHealthSliderMaxValue(iLife);
         anim = GetComponentInChildren<Animator>();
+        PlayerUIController.SetHealthSliderMaxValue(iLife);
+        
 	}
 	
 	// Update is called once per frame
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour {
 		if(iLife <= 0) {
             return;
         }
-        ResetAnimations();
 
         SetMovement();
         BleedPlayer();
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour {
         }
         if(Input.GetKeyDown(KeyCode.Space)) {
             TurnUndead();
-            anim.SetTrigger("LiftSword");
         }
 
         // Attack
@@ -62,6 +61,7 @@ public class PlayerController : MonoBehaviour {
             Attack();
         }
 
+        //ResetAnimations();
     }
 
     void FixedUpdate() {
@@ -88,6 +88,8 @@ public class PlayerController : MonoBehaviour {
         velocity = (forwardMovement + sideMovement).normalized * fSpeed;
         if(velocity.sqrMagnitude > 0) {
             anim.SetTrigger("Run");
+        } else {
+            anim.SetTrigger("Idle");
         }
 
         // Set rotation
@@ -126,9 +128,9 @@ public class PlayerController : MonoBehaviour {
     void TurnUndead() {
         if(iTurnUndeadUses > 0) {
             --iTurnUndeadUses;
+            anim.SetTrigger("LiftSword");
             // Call static game manager function
             GameManager.TurnUndead(fTurnDuration);
-            Debug.Log(iTurnUndeadUses);
         }
     }
 
