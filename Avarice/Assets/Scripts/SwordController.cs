@@ -5,6 +5,8 @@ using UnityEngine;
 public class SwordController : MonoBehaviour {
 
     public static SwordController instance;
+    [SerializeField]
+    private static float fStunDuration = 2.0f;
     
 
 	// Use this for initialization
@@ -20,6 +22,7 @@ public class SwordController : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy") && PlayerController.bIsAttacking) {
             // Stun enemy
+            other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
         }
     }
 

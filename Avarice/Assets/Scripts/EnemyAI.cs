@@ -8,6 +8,8 @@ public class EnemyAI : MonoBehaviour {
     public GameObject player;
     public NavMeshAgent agent;
 
+    private bool bIsStunned = false;
+
     private Ray ray;
     private GameObject coin;
 
@@ -56,10 +58,12 @@ public class EnemyAI : MonoBehaviour {
         player = FindPlayer();
 	}
 
-    
-
     // Update is called once per frame
     void Update () {
+
+        if (bIsStunned) {
+            return;
+        }
 
         ray.origin = player.transform.position;
         ray.direction = Vector3.down;
@@ -87,6 +91,19 @@ public class EnemyAI : MonoBehaviour {
 
         
 
+    }
+
+    public void StunEnemy(float _fDuration) {
+        if (bIsStunned) {
+            return;
+        }
+        bIsStunned = true;
+        StartCoroutine(RemoveStun(_fDuration));
+    }
+
+    private IEnumerator RemoveStun(float _fDuration) {
+        yield return new WaitForSeconds(_fDuration);
+        bIsStunned = false;
     }
 
 }
