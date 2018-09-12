@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         instance = this;
+        SpawnCoins();
     }
 
     // Update is called once per frame
@@ -47,7 +48,17 @@ public class GameManager : MonoBehaviour {
         }
         // Reset coins on player
         iCoinsOnPlayer = 0;
-        // Reset AI??
+        // Reset Level
+        DestroyAllSkeletons();
+        DestroyAllCoins();
+        SpawnCoins();
+    }
+
+    private static void DestroyAllSkeletons() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies) {
+            Destroy(enemy);
+        }
     }
 
     // Updates the number of coins the player has on them and spawns enemies as needed.
@@ -66,5 +77,20 @@ public class GameManager : MonoBehaviour {
         // Update storage
         PlayerPrefs.SetInt("HighScore", _iNewHighScore);
         // Update text
+        PlayerUIController.UpdateHighScoreText();
+    }
+
+    private static void DestroyAllCoins() {
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("CoinPickup");
+        foreach(GameObject coin in coins) {
+            Destroy(coin);
+        }
+    }
+
+    private static void SpawnCoins() {
+        GameObject[] coinSpawns = GameObject.FindGameObjectsWithTag("RoomCoinSpawn");
+        foreach(GameObject coinSpawn in coinSpawns) {
+            coinSpawn.GetComponent<RoomCoinSpawnController>().SpawnCoin();
+        }
     }
 }

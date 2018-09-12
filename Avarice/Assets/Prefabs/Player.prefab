@@ -1906,7 +1906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iLife: 180
   fSpeed: 5
-  lookSensitivity: 10
+  flookSensitivity: 5
+  fAttackRate: 0.6
   fBleedInterval: 10
   iBleedAmount: 10
   iTurnUndeadUses: 1
