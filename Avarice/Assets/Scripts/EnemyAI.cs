@@ -61,6 +61,10 @@ public class EnemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if (bIsStunned) {
+            return;
+        }
+
         ray.origin = player.transform.position;
         ray.direction = Vector3.down;
 
