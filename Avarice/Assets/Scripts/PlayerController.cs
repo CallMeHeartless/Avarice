@@ -43,15 +43,18 @@ public class PlayerController : MonoBehaviour {
 		if(iLife <= 0) {
             return;
         }
+        ResetAnimations();
 
         SetMovement();
         BleedPlayer();
 
-        if(Input.GetKeyDown(KeyCode.Space)) { // Default key for now
+        if(Input.GetButton("Fire2")) { // Default key for now
             CreateCoinPileDistraction();
+            anim.SetTrigger("Throw");
         }
-        if(Input.GetKeyDown(KeyCode.T)) {
+        if(Input.GetKeyDown(KeyCode.Space)) {
             TurnUndead();
+            anim.SetTrigger("LiftSword");
         }
 
         // Attack
@@ -83,6 +86,9 @@ public class PlayerController : MonoBehaviour {
         Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
 
         velocity = (forwardMovement + sideMovement).normalized * fSpeed;
+        if(velocity.sqrMagnitude > 0) {
+            anim.SetTrigger("Run");
+        }
 
         // Set rotation
         rotation = new Vector3(0.0f, Input.GetAxisRaw("Mouse X"), 0.0f) * flookSensitivity;
@@ -146,7 +152,7 @@ public class PlayerController : MonoBehaviour {
     private void Attack() {
         bIsAttacking = true;
         // Animation
-
+        anim.SetTrigger("Attack");
         // cooldown
         StartCoroutine(AttackCooldown(fAttackRate));
     }
@@ -154,6 +160,15 @@ public class PlayerController : MonoBehaviour {
     IEnumerator AttackCooldown(float _fAttackCooldown) {
         yield return new WaitForSeconds(_fAttackCooldown);
         bIsAttacking = false;
+    }
+
+    private void ResetAnimations() {
+        anim.ResetTrigger("Idle");
+        anim.ResetTrigger("Attack");
+        anim.ResetTrigger("LiftSword");
+        anim.ResetTrigger("Pickup");
+        anim.ResetTrigger("Run");
+        anim.ResetTrigger("Throw");
     }
 
 }
