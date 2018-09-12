@@ -11,11 +11,14 @@ public class PlayerUIController : MonoBehaviour {
     private Text coinText;
     [SerializeField]
     private Slider healthBar;
+    [SerializeField]
+    private Text highScoreText;
 
 
 	// Use this for initialization
 	void Start () {
         instance = this;
+        highScoreText.text = "High Tribute: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +37,10 @@ public class PlayerUIController : MonoBehaviour {
     public static void SetHealthSliderMaxValue(int _iMaxLife) {
         instance.healthBar.maxValue = _iMaxLife;
         instance.healthBar.value = _iMaxLife;
+    }
+
+    public static void UpdateHighScoreText() {
+        instance.highScoreText.text = "High Tribute: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
     
 }

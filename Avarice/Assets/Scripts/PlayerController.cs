@@ -121,11 +121,15 @@ public class PlayerController : MonoBehaviour {
         iCoinCount += _iCoinValue;
         // Update game manager with player's new current coin count
         GameManager.PlayerCollectedCoins(iCoinCount);
+
+        // Update text
+        PlayerUIController.UpdateCoinText(iCoinCount);
     }
 
     public static int PayTribute() {
         int temp = instance.iCoinCount;
         instance.iCoinCount = 0;
+        PlayerUIController.UpdateCoinText(0);
         return temp;
     }
 
