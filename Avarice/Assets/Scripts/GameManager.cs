@@ -21,6 +21,38 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    //Spawn enemies after tribute collection
+    public static void SpawnEnemies()
+    {
+        GameObject[] gos;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        gos = GameObject.FindGameObjectsWithTag("eSpawn");
+        GameObject closest = null;
+        float distance = 100000.0f;
+        Vector3 position = player.transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+
+        string groupName = closest.GetComponent<eSpawn>().groupName;
+
+        foreach(GameObject go in gos)
+        {
+            if(groupName == go.GetComponent<eSpawn>().groupName)
+            {
+                GameObject SkullBoi = Instantiate(Resources.Load("SkullBoi", typeof(GameObject))) as GameObject;
+                SkullBoi.transform.position = go.transform.position;
+            }
+        }
+    }
+
     // Makes undead afraid of the player
     public static void TurnUndead(float _fDuration) {
         isAfraid = true;
@@ -65,7 +97,7 @@ public class GameManager : MonoBehaviour {
     public static void PlayerCollectedCoins(int _iPlayerCoinTotal) {
         if(_iPlayerCoinTotal > iCoinsOnPlayer) {
             // Only spawn more enemies if the player has collected more coins
-
+            SpawnEnemies();
         }
 
 

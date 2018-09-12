@@ -6,8 +6,12 @@ TagManager:
   tags:
   - Distraction
   - Enemy
+<<<<<<< HEAD
+  - eSpawn
+=======
   - CoinPickup
   - RoomCoinSpawn
+>>>>>>> 22d4a1e69bd0210b47a9f1dc7caaa652257ffccd
   layers:
   - Default
   - TransparentFX

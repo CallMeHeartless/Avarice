@@ -9,7 +9,8 @@ ModelImporter:
     400000: Candle
     400002: Candle_Stand
     400004: //RootNode
-    2100000: lambert1
+    2100000: Wax
+    2100002: Metal
     2300000: Candle
     2300002: Candle_Stand
     3300000: Candle
