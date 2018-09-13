@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 95192032781523166}
   - component: {fileID: 195732899764913170}
   - component: {fileID: 114587911832871380}
+  - component: {fileID: 136179076439530774}
   m_Layer: 0
   m_Name: SkullBoi
   m_TagString: Enemy
@@ -1211,6 +1212,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   agent: {fileID: 195732899764913170}
+--- !u!136 &136179076439530774
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355451801252984}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137342869762686816
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
