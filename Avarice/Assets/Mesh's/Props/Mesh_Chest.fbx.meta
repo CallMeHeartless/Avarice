@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 745e0a8c18647de498a8a907898eed58
+guid: b681c87391b151a4bb673dfe70871de0
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
     2100000: Wood
-    2100002: lambert5
-    2100004: Metal
+    2100002: Metal
+    2100004: Gold
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Mesh_CoinPouch
+    4300000: Mesh_Chest
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -50,7 +50,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
