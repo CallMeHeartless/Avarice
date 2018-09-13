@@ -19,13 +19,20 @@ public class SwordController : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter(Collider other) {
- 
-       if (other.CompareTag("Enemy") && PlayerController.bIsAttacking) {
+    public void OnTriggerEnter(Collider other) {
+       if (other.CompareTag("Enemy")) {
             // Stun enemy
             Debug.Log("Hit");
             other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
        }
     }
+
+    //private void OnCollisionEnter(Collision other) {
+    //    if (other.gameObject.CompareTag("Enemy") && PlayerController.bIsAttacking) {
+    //        // Stun enemy
+    //        Debug.Log("Hit");
+    //        other.gameObject.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
+    //    }
+    //}
 
 }
