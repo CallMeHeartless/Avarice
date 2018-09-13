@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
     private Transform coinThrow;
     [SerializeField]
     private ParticleSystem turnUndeadParticles;
+    [SerializeField]
+    private AudioSource coinStep;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -98,8 +100,14 @@ public class PlayerController : MonoBehaviour {
         velocity = (forwardMovement + sideMovement).normalized * fSpeed;
         if(velocity.sqrMagnitude > 0) {
             anim.SetTrigger("Run");
+            if (!coinStep.isPlaying) {
+                coinStep.Play();
+            }
         } else {
             anim.SetTrigger("Idle");
+            if (coinStep.isPlaying) {
+                coinStep.Stop();
+            }
         }
 
         // Set rotation
