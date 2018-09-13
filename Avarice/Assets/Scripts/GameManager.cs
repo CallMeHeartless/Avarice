@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour {
     public static void TurnUndead(float _fDuration) {
         isAfraid = true;
         instance.StartCoroutine(EndTurnUndead(_fDuration));
+        // Stun all enemies
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies) {
+            enemy.GetComponent<EnemyAI>().StunEnemy(_fDuration);
+        }
     }
 
     // Coroutine to end effects of undead being afraid of the player after the set duration

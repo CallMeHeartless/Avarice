@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     [SerializeField]
     private Transform coinThrow;
+    [SerializeField]
+    private ParticleSystem turnUndeadParticles;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -136,7 +138,7 @@ public class PlayerController : MonoBehaviour {
     public void TurnUndead() {
         if(iTurnUndeadUses > 0) {
             --iTurnUndeadUses;
-            //anim.SetTrigger("LiftSword");
+            turnUndeadParticles.Play(true);
             // Call static game manager function
             GameManager.TurnUndead(fTurnDuration);
         }
