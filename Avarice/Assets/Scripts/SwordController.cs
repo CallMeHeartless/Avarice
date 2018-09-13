@@ -7,6 +7,8 @@ public class SwordController : MonoBehaviour {
     public static SwordController instance;
     [SerializeField]
     private static float fStunDuration = 2.0f;
+    [SerializeField]
+    private AudioSource attackAudio;
     
 
 	// Use this for initialization
@@ -20,9 +22,10 @@ public class SwordController : MonoBehaviour {
 	}
 
     public void OnTriggerEnter(Collider other) {
-       if (other.CompareTag("Enemy")) {
+       if (other.CompareTag("Enemy") && PlayerController.bIsAttacking) {
             // Stun enemy
             other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
+            attackAudio.Play();
        }
     }
 
