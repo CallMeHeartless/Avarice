@@ -291,7 +291,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.48164034
+        functionName: ThrowCoin
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 316699de28f8f894a99e0353dce14aab,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -319,7 +327,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5641241
+        functionName: TurnUndead
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 316699de28f8f894a99e0353dce14aab,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

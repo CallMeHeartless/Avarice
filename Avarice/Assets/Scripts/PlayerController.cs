@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
     private int iCoinDistractionCost = 50;
     //[SerializeField]
     private Animator anim;
+    [SerializeField]
+    private Transform coinThrow;
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -49,11 +51,17 @@ public class PlayerController : MonoBehaviour {
         BleedPlayer();
 
         if(Input.GetButton("Fire2")) { // Default key for now
-            CreateCoinPileDistraction();
-            anim.SetTrigger("Throw");
+            //CreateCoinPileDistraction();
+            if(iCoinCount > 0) {
+                anim.SetTrigger("Throw");
+            }
+            
         }
         if(Input.GetKeyDown(KeyCode.Space)) {
-            TurnUndead();
+            if(iTurnUndeadUses > 0) {
+                anim.SetTrigger("LiftSword");
+            }
+            //TurnUndead();
         }
 
         // Attack
@@ -114,7 +122,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Throws coins out as a distraction
-    void CreateCoinPileDistraction() {
+    public void CreateCoinPileDistraction() {
         if(iCoinCount >= iCoinDistractionCost) {
             iCoinCount -= iCoinDistractionCost;
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
@@ -125,10 +133,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Turns undead, making enemies flee the player for a short time
-    void TurnUndead() {
+    public void TurnUndead() {
         if(iTurnUndeadUses > 0) {
             --iTurnUndeadUses;
-            anim.SetTrigger("LiftSword");
+            //anim.SetTrigger("LiftSword");
             // Call static game manager function
             GameManager.TurnUndead(fTurnDuration);
         }

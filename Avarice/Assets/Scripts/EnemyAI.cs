@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
-    private GameObject player;
+    public GameObject player;
     public NavMeshAgent agent;
 
     private bool bIsStunned = false;
@@ -33,6 +33,8 @@ public class EnemyAI : MonoBehaviour {
         return closest;
     }
 
+
+
     public GameObject FindPlayer()
     {
         GameObject[] gos;
@@ -56,6 +58,7 @@ public class EnemyAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = FindPlayer();
+        StunEnemy(1.0f);
 	}
 
     // Update is called once per frame
@@ -98,12 +101,14 @@ public class EnemyAI : MonoBehaviour {
             return;
         }
         bIsStunned = true;
+        agent.isStopped = true;
         StartCoroutine(RemoveStun(_fDuration));
     }
 
     private IEnumerator RemoveStun(float _fDuration) {
         yield return new WaitForSeconds(_fDuration);
         bIsStunned = false;
+        agent.isStopped = false;
     }
 
 }
