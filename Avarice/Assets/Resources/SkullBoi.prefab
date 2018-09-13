@@ -1190,7 +1190,7 @@ Animator:
   m_GameObject: {fileID: 1355451801252984}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0a19275281834ac4ca1a1fcdb985cd1c, type: 3}
-  m_Controller: {fileID: 9100000, guid: b64c71474f3a9374c8a6e6658fa6fb07, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4c628f2d8b464bd469b323487934ee51, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1212,6 +1212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   agent: {fileID: 195732899764913170}
+  fAttackRadius: 2
 --- !u!136 &136179076439530774
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1222,9 +1223,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.6638312
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.8319156, z: 0}
 --- !u!137 &137342869762686816
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
