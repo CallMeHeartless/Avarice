@@ -21,26 +21,26 @@ ModelImporter:
     100030: Base HumanLLegThigh
     100032: Base HumanNeck1
     100034: Base HumanNeck2
-    100036: Base HumanPalmBone001
-    100038: Base HumanPelvis
-    100040: Base HumanRCalf
-    100042: Base HumanRCollarbone
-    100044: Base HumanRDigit11
-    100046: Base HumanRDigit12
-    100048: Base HumanRDigit13
-    100050: Base HumanRDigit21
-    100052: Base HumanRDigit22
-    100054: Base HumanRDigit23
-    100056: Base HumanRFoot
-    100058: Base HumanRForearm
-    100060: Base HumanRibcage
-    100062: Base HumanRPalm
-    100064: Base HumanRThigh
-    100066: Base HumanRUpperarm
-    100068: Base HumanSpine1
-    100070: Base HumanSpine2
-    100072: Base HumanSpine3
-    100074: Base HumanSpine4
+    100036: Base HumanPelvis
+    100038: Base HumanRCalf
+    100040: Base HumanRCollarbone
+    100042: Base HumanRDigit11
+    100044: Base HumanRDigit12
+    100046: Base HumanRDigit13
+    100048: Base HumanRDigit21
+    100050: Base HumanRDigit22
+    100052: Base HumanRDigit23
+    100054: Base HumanRFoot
+    100056: Base HumanRForearm
+    100058: Base HumanRibcage
+    100060: Base HumanRPalm
+    100062: Base HumanRThigh
+    100064: Base HumanRUpperarm
+    100066: Base HumanSpine1
+    100068: Base HumanSpine2
+    100070: Base HumanSpine3
+    100072: Base HumanSpine4
+    100074: Base HumanSword
     100076: Mesh_Cutlass
     100078: Mesh_Skeleton
     400000: //RootNode
@@ -61,29 +61,29 @@ ModelImporter:
     400030: Base HumanLLegThigh
     400032: Base HumanNeck1
     400034: Base HumanNeck2
-    400036: Base HumanPalmBone001
-    400038: Base HumanPelvis
-    400040: Base HumanRCalf
-    400042: Base HumanRCollarbone
-    400044: Base HumanRDigit11
-    400046: Base HumanRDigit12
-    400048: Base HumanRDigit13
-    400050: Base HumanRDigit21
-    400052: Base HumanRDigit22
-    400054: Base HumanRDigit23
-    400056: Base HumanRFoot
-    400058: Base HumanRForearm
-    400060: Base HumanRibcage
-    400062: Base HumanRPalm
-    400064: Base HumanRThigh
-    400066: Base HumanRUpperarm
-    400068: Base HumanSpine1
-    400070: Base HumanSpine2
-    400072: Base HumanSpine3
-    400074: Base HumanSpine4
+    400036: Base HumanPelvis
+    400038: Base HumanRCalf
+    400040: Base HumanRCollarbone
+    400042: Base HumanRDigit11
+    400044: Base HumanRDigit12
+    400046: Base HumanRDigit13
+    400048: Base HumanRDigit21
+    400050: Base HumanRDigit22
+    400052: Base HumanRDigit23
+    400054: Base HumanRFoot
+    400056: Base HumanRForearm
+    400058: Base HumanRibcage
+    400060: Base HumanRPalm
+    400062: Base HumanRThigh
+    400064: Base HumanRUpperarm
+    400066: Base HumanSpine1
+    400068: Base HumanSpine2
+    400070: Base HumanSpine3
+    400072: Base HumanSpine4
+    400074: Base HumanSword
     400076: Mesh_Cutlass
     400078: Mesh_Skeleton
-    2100000: Mesh_Skeleton_initialShadingGroup
+    2100000: lambert1
     4300000: Mesh_Skeleton
     4300002: Mesh_Cutlass
     7400000: Spawn
