@@ -1586,7 +1586,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571240803437242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.287, z: 0}
+  m_LocalPosition: {x: 4.1617265, y: 1.0000001, z: 8.142359}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4035063062645330}
@@ -1807,7 +1807,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: 06589849d3f2d344b8ce82b454eee22b, type: 3}
+  - {fileID: 2100000, guid: cd48a77990d029e47b2c1b369f5f969d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1914,6 +1914,7 @@ MonoBehaviour:
   fTurnDuration: 10
   iCoinCount: 0
   iCoinDistractionCost: 1
+  coinThrow: {fileID: 0}
 --- !u!114 &114550556404069354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1953,7 +1954,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 06589849d3f2d344b8ce82b454eee22b, type: 3}
+  - {fileID: 2100000, guid: 9b3d5793f5c46a549b434e4d24389604, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
