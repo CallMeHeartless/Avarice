@@ -7,11 +7,16 @@ public class EnemyAI : MonoBehaviour {
 
     public GameObject player;
     public NavMeshAgent agent;
+    public float fAttackRadius = 2.0f;
 
     private bool bIsStunned = false;
+    private bool bIsAttacking = false;
+    private float fAttackRate = 0.6f;
 
     private Ray ray;
     private GameObject coin;
+    private Animator anim;
+    private float fDistance;
 
     public GameObject FindClosestCoin()
     {
@@ -31,6 +36,32 @@ public class EnemyAI : MonoBehaviour {
             }
         }
         return closest;
+    }
+
+    private void Attack()
+    {
+        bIsAttacking = true;
+        // Animation
+        anim.SetTrigger("Attack");
+        // cooldown
+        StartCoroutine(AttackCooldown(fAttackRate));
+    }
+
+    IEnumerator AttackCooldown(float _fAttackCooldown)
+    {
+        yield return new WaitForSeconds(_fAttackCooldown);
+        bIsAttacking = false;
+        anim.SetTrigger("Run");
+    }
+
+    void AttackDistance()
+    {
+        fDistance = (player.transform.position - transform.position).magnitude;
+        
+        if(fDistance < fAttackRadius)
+        {
+            Attack();
+        }
     }
 
 
@@ -58,8 +89,9 @@ public class EnemyAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = FindPlayer();
-        StunEnemy(1.0f);
-	}
+        StunEnemy(2.0f);
+        anim = GetComponentInChildren<Animator>();
+    }
 
     // Update is called once per frame
     void Update () {
@@ -92,6 +124,10 @@ public class EnemyAI : MonoBehaviour {
             coin = null;
         }
 
+        if(coin == null)
+        {
+            AttackDistance();
+        }
         
 
     }
