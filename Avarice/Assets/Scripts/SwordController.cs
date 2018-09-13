@@ -22,7 +22,6 @@ public class SwordController : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
        if (other.CompareTag("Enemy")) {
             // Stun enemy
-            Debug.Log("Hit");
             other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
        }
     }
