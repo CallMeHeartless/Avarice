@@ -2523,6 +2523,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114139578556103912, guid: 66b440c5575390c43880602532eb5ade,
+        type: 2}
+      propertyPath: coinThrow
+      value: 
+      objectReference: {fileID: 1486468895}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b440c5575390c43880602532eb5ade, type: 2}
   m_IsPrefabAsset: 0
@@ -44140,6 +44145,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4837080322806906, guid: 3c6ba963694537f4a8b4b426f5edfd10,
     type: 2}
   m_PrefabInternal: {fileID: 1472222942}
+--- !u!4 &1486468895 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4359963063415452, guid: 66b440c5575390c43880602532eb5ade,
+    type: 2}
+  m_PrefabInternal: {fileID: 75181159}
 --- !u!1001 &1486898998
 Prefab:
   m_ObjectHideFlags: 0
@@ -61060,6 +61070,10 @@ Prefab:
     - target: {fileID: 4045569001053012, guid: 0f3930212a0255e44a9d91a2b4a346bd, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655952616623466, guid: 0f3930212a0255e44a9d91a2b4a346bd, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f3930212a0255e44a9d91a2b4a346bd, type: 2}
