@@ -6,9 +6,9 @@ TagManager:
   tags:
   - CoinPickup
   - Distraction
-  - Enemy
   - eSpawn
   - RoomCoinSpawn
+  - Enemy
   layers:
   - Default
   - TransparentFX
