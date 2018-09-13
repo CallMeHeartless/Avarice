@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinText: {fileID: 114184435100052654}
   healthBar: {fileID: 114392646206119478}
-  currentScoreText: {fileID: 0}
+  currentScoreText: {fileID: 114976881386153170}
   highScoreText: {fileID: 114091625248361980}
 --- !u!114 &114228970746074962
 MonoBehaviour:
