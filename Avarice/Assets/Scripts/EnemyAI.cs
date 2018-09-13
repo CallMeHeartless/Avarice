@@ -144,6 +144,7 @@ public class EnemyAI : MonoBehaviour {
     private IEnumerator RemoveStun(float _fDuration) {
         yield return new WaitForSeconds(_fDuration);
         bIsStunned = false;
+        anim.SetTrigger("Recover");
         agent.isStopped = false;
     }
 
