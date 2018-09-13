@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -129,6 +130,9 @@ public class PlayerController : MonoBehaviour {
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
         PlayerUIController.UpdateHealthSlider(iLife);
+        if(iLife <= 0) {
+            SceneManager.LoadScene(0);
+        }
     }
 
     // Throws coins out as a distraction
