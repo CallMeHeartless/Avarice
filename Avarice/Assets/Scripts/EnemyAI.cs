@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour {
     private bool bIsStunned = false;
     private bool bIsAttacking = false;
     private float fAttackRate = 0.6f;
+    private bool bCanAttack = true;
 
     private Ray ray;
     private GameObject coin;
@@ -50,8 +51,9 @@ public class EnemyAI : MonoBehaviour {
     IEnumerator AttackCooldown(float _fAttackCooldown)
     {
         yield return new WaitForSeconds(_fAttackCooldown);
-        bIsAttacking = false;
         anim.SetTrigger("Run");
+        bIsAttacking = false;
+        
     }
 
     void AttackDistance()
@@ -60,7 +62,11 @@ public class EnemyAI : MonoBehaviour {
         
         if(fDistance < fAttackRadius)
         {
-            Attack();
+            if (bCanAttack == true)
+            {
+                Attack();
+            }
+            
         }
     }
 
@@ -137,6 +143,7 @@ public class EnemyAI : MonoBehaviour {
             return;
         }
         bIsStunned = true;
+        bCanAttack = false;
         agent.isStopped = true;
         StartCoroutine(RemoveStun(_fDuration));
     }
@@ -144,7 +151,7 @@ public class EnemyAI : MonoBehaviour {
     private IEnumerator RemoveStun(float _fDuration) {
         yield return new WaitForSeconds(_fDuration);
         bIsStunned = false;
-        anim.SetTrigger("Recover");
+        bCanAttack = true;
         agent.isStopped = false;
     }
 
