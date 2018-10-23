@@ -34185,10 +34185,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 898059422}
-    - target: {fileID: 4802676746511690, guid: 4fd5fc7cc5ea355468c96fdf7a7d9fdf, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.531
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fd5fc7cc5ea355468c96fdf7a7d9fdf, type: 2}
   m_IsPrefabAsset: 0
@@ -53258,35 +53254,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4837080322806906, guid: 3c6ba963694537f4a8b4b426f5edfd10,
     type: 2}
   m_PrefabInternal: {fileID: 1574467090}
---- !u!1 &1579432907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1377727968344732, guid: 4fd5fc7cc5ea355468c96fdf7a7d9fdf,
-    type: 2}
-  m_PrefabInternal: {fileID: 1072058976}
---- !u!114 &1579432908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1579432907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f3100dcacd65f458d06fbcc3742b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iDam: 10
---- !u!65 &1579432909
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1579432907}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.40332758, y: 0.37412545, z: 1.1909817}
-  m_Center: {x: -0.16544433, y: -0.23827758, z: -1.6343571}
 --- !u!1001 &1600264137
 Prefab:
   m_ObjectHideFlags: 0
