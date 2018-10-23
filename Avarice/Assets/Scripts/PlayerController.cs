@@ -4,18 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
+    private static PlayerController instance;
 
-    public static PlayerController instance;
-    public static bool bIsAttacking = false;
-    public int iLife = 180;
+    [Header("Player Progression Variables")]
+    private int iLife = 100;
+    private float fPlayerStamina = 100;
+    private float fPlayerToxicity = 180;
+    private float fPlayerToxicityCounter = 0.0f;
+    private int iTurnUndeadUses = 1;
+    private int iCoinCount = 0;
+    private float fCoinMultiplier = 1.0f;
+    private int iDamage = 1;
+
+    [Header("Player Control Variables")]
     public float fSpeed = 5.0f;
     public float flookSensitivity = 10.0f;
     public float fAttackRate = 0.6f;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
-    public int iTurnUndeadUses = 1;
+    public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
-    public int iCoinCount = 0;
 
     [SerializeField]
     private int iCoinDistractionCost = 50;
@@ -27,6 +35,7 @@ public class PlayerController : MonoBehaviour {
     private ParticleSystem turnUndeadParticles;
     [SerializeField]
     private AudioSource coinStep;
+    
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -42,8 +51,8 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
         anim = GetComponentInChildren<Animator>();
-        PlayerUIController.SetHealthSliderMaxValue(iLife);
-        
+        // PlayerUIController.SetHealthSliderMaxValue(iLife);
+        LoadPlayerVariables();
 	}
 	
 	// Update is called once per frame
@@ -193,6 +202,10 @@ public class PlayerController : MonoBehaviour {
         anim.ResetTrigger("Pickup");
         anim.ResetTrigger("Run");
         anim.ResetTrigger("Throw");
+    }
+
+    private void LoadPlayerVariables() {
+
     }
 
 }
