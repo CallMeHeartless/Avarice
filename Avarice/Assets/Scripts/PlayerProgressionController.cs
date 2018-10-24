@@ -62,7 +62,7 @@ public class PlayerProgressionController : MonoBehaviour {
     [SerializeField]
     private int CoinMultiplierIndex = 0;
 
-	// Use this for initialization
+	/// Use this for initialization
 	void Start () {
         // Prevent more than one instance from existing
         if(instance != null) {
@@ -75,7 +75,7 @@ public class PlayerProgressionController : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
+	/// Update is called once per frame
 	void Update () {
 		
 	}
@@ -94,7 +94,7 @@ public class PlayerProgressionController : MonoBehaviour {
         return _iPurchaseCost <= PlayerPrefs.GetInt("TotalCoins");
     }
 
-    // Loads the player's index of each property
+    /// Loads the player's index of each property
     private void InitialiseIndices() {
         ToxicityIndex = PlayerPrefs.GetInt("ToxicityIndex", 0);
         HealthIndex = PlayerPrefs.GetInt("HealthIndex", 0);
@@ -104,7 +104,7 @@ public class PlayerProgressionController : MonoBehaviour {
         CoinMultiplierIndex = PlayerPrefs.GetInt("CoinMultiplierIndex", 0);
     }
 
-    // Increase the player's toxicity resistance index if possible (scene will need to be updated following this call)
+    /// Increase the player's toxicity resistance index if possible (scene will need to be updated following this call)
     public static bool UpgradeToxicity() {
         // Check player is not at maximum 
         if(instance.ToxicityIndex >= instance.ToxicityValues.Length) {
@@ -125,7 +125,7 @@ public class PlayerProgressionController : MonoBehaviour {
 
     }
 
-    // Get toxicity index
+    /// Get toxicity index
     public static int GetToxicityIndex() {
         return instance.ToxicityIndex;
     }
@@ -134,7 +134,7 @@ public class PlayerProgressionController : MonoBehaviour {
         return instance.ToxicityValues[instance.ToxicityIndex];
     }
 
-    // Upgrade the player's health level if possible
+    /// Upgrade the player's health level if possible
     public static bool UpgradeHealth() {
         // Check player is not at maximum 
         if (instance.HealthIndex >= instance.HealthValues.Length) {
@@ -162,7 +162,7 @@ public class PlayerProgressionController : MonoBehaviour {
         return instance.HealthValues[instance.HealthIndex];
     }
 
-    // Upgrade player's stamina
+    /// Upgrade player's stamina
     public static bool UpgradeStamina() {
         // Check player is not at maximum 
         if (instance.StaminaIndex >= instance.StaminaValues.Length) {
@@ -190,7 +190,7 @@ public class PlayerProgressionController : MonoBehaviour {
         return instance.StaminaValues[instance.StaminaIndex];
     }
 
-    // Upgrade damage
+    /// Upgrade damage
     public static bool UpgradeDamage() {
         // Check player is not at maximum 
         if (instance.DamageIndex >= instance.DamageMultiplierValues.Length) {
@@ -218,7 +218,7 @@ public class PlayerProgressionController : MonoBehaviour {
         return instance.DamageMultiplierValues[instance.DamageIndex];
     }
 
-    // Turn Undead Upgrade
+    /// Turn Undead Upgrade
     public static bool UpgradeTurnUndead() {
         // Check player is not at maximum 
         if (instance.TurnUndeadIndex >= instance.TurnUndeadUseValues.Length) {
@@ -246,7 +246,7 @@ public class PlayerProgressionController : MonoBehaviour {
         return instance.TurnUndeadUseValues[instance.TurnUndeadIndex];
     }
 
-    // Coin Multiplier Upgrade
+    /// Coin Multiplier Upgrade
     public static bool UpgradeCoinMultiplier() {
         // Check player is not at maximum 
         if (instance.CoinMultiplierIndex >= instance.CoinMultiplierValues.Length) {
@@ -274,4 +274,22 @@ public class PlayerProgressionController : MonoBehaviour {
         return instance.CoinMultiplierValues[instance.CoinMultiplierIndex];
     }
 
+    public static int[] GetUpgradeCosts(string property) {
+        if(property == "Toxicity") {
+            return instance.ToxicityUpgradeCosts;
+        }else if(property == "Health") {
+            return instance.HealthUpgradeCosts;
+        }else if(property == "Stamina") {
+            return instance.StaminaUpgradeCosts;
+        }else if(property == "TurnUndead") {
+            return instance.TurnUndeadUpgradeCosts;
+        }else if(property == "Damage") {
+            return instance.DamageUpgradeCosts;
+        }else if(property == "Coin") {
+            return instance.CoinUpgradeCosts;
+        } else {
+            Debug.LogError("ERROR: Progression Property not recognised. Null array returned.");
+            return null;
+        }
+    }
 }

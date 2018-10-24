@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     public int iBleedAmount = 10;
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
+    private float fPlayerStaminaCounter = 100.0f;
 
     [SerializeField]
     private int iCoinDistractionCost = 50;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         // PlayerUIController.SetHealthSliderMaxValue(iLife);
         LoadPlayerVariables();
+        fPlayerStaminaCounter = fPlayerStamina;
 	}
 	
 	// Update is called once per frame
@@ -62,7 +64,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         SetMovement();
-        BleedPlayer();
+
 
         if(Input.GetButton("Fire2")) { // Default key for now
             //CreateCoinPileDistraction();
@@ -83,7 +85,22 @@ public class PlayerController : MonoBehaviour {
             Attack();
         }
 
-        //ResetAnimations();
+        // Constant stamina regen
+        if(fPlayerStaminaCounter < fPlayerStamina) {
+            fPlayerStaminaCounter += Time.deltaTime;
+            if(fPlayerStaminaCounter > fPlayerStamina) {
+                fPlayerStaminaCounter = fPlayerStamina;
+            }
+            // Update slider
+        }
+
+        // Constant toxicity raise
+        if(fPlayerToxicityCounter < fPlayerToxicity) {
+            fPlayerToxicityCounter += Time.deltaTime;
+            // Update slider
+        } else {
+            BleedPlayer();
+        }
     }
 
     void FixedUpdate() {
