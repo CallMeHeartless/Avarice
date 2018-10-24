@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     private int iTurnUndeadUses = 1;
     private int iCoinCount = 0;
     private float fCoinMultiplier = 1.0f;
-    private int iDamage = 1;
+    private float fDamageMod = 1.0f;
 
     [Header("Player Control Variables")]
     public float fSpeed = 5.0f;
@@ -205,7 +205,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void LoadPlayerVariables() {
-
+        iLife = PlayerProgressionController.GetHealth();
+        fPlayerToxicity = PlayerProgressionController.GetToxicity();
+        fPlayerStamina = PlayerProgressionController.GetStamina();
+        iTurnUndeadUses = PlayerProgressionController.GetTurnUndead();
+        fDamageMod = PlayerProgressionController.GetDamage();
+        fCoinMultiplier = PlayerProgressionController.GetCoinMultiplier();
     }
 
 }
