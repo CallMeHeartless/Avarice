@@ -7,6 +7,7 @@ public class PlayerProgressionController : MonoBehaviour {
     private static PlayerProgressionController instance = null;
     [SerializeField]
     private bool testMode = false;
+    public int testCoins = 5000;
 
     // Toxicity
     [Header("Toxicity")]
@@ -291,5 +292,10 @@ public class PlayerProgressionController : MonoBehaviour {
             Debug.LogError("ERROR: Progression Property not recognised. Null array returned.");
             return null;
         }
+    }
+
+    // Reset all player progression
+    public static void ResetAll() {
+
     }
 }

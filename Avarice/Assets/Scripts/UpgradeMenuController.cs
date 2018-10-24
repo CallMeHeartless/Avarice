@@ -58,8 +58,65 @@ public class UpgradeMenuController : MonoBehaviour {
 		
 	}
 
-    public bool AttemptToPurchase(string item, int level) {
-        return false;
+    public void AttemptToPurchase(string item) {
+        if(item == "Toxicity") {
+            if (PlayerProgressionController.UpgradeToxicity()) {
+                coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+                // Play audio
+
+                // Rebuild menu
+                SetUpToxicity();
+            }
+        } 
+        else if (item == "Health") {
+            if (PlayerProgressionController.UpgradeHealth()) {
+                coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+                // Play audio
+
+                // Rebuild menu
+                SetUpHealth();
+            }
+        } 
+        else if (item == "Stamina") {
+            if (PlayerProgressionController.UpgradeStamina()) {
+                coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+                // Play audio
+
+                // Rebuild menu
+                SetUpStamina();
+            }
+        } 
+        else if (item == "TurnUndead") {
+            if (PlayerProgressionController.UpgradeTurnUndead()) {
+                coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+                // Play audio
+
+                // Rebuild menu
+                SetUpTurnUndead();
+            }
+        } 
+        else if (item == "Damage") {
+            if (PlayerProgressionController.UpgradeDamage()) {
+                coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+                // Play audio
+
+                // Rebuild menu
+                SetUpDamage();
+            }
+        }
+        else if (item == "Coin") {
+            if (PlayerProgressionController.UpgradeCoinMultiplier()) {
+                coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+                // Play audio
+
+                // Rebuild menu
+                SetUpCoinMultiplier();
+            }
+        } else {
+            // Play error noise
+            Debug.Log("Could not purchase");
+        }
+
     }
 
     private void SetUpToxicity() {
@@ -74,6 +131,10 @@ public class UpgradeMenuController : MonoBehaviour {
             } else {
                 // Else mark as purchased
                 childI.Find("Cost").GetComponent<Text>().text = "PURCHASED";
+            }
+
+            if (i != playerToxicityIndex + 1){
+               
                 Destroy(childI.Find("BuyButton").gameObject);
             }
         }
