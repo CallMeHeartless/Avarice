@@ -134,8 +134,11 @@ public class UpgradeMenuController : MonoBehaviour {
             }
 
             if (i != playerToxicityIndex + 1){
-               
-                Destroy(childI.Find("BuyButton").gameObject);
+
+                //Destroy(childI.Find("BuyButton").gameObject);
+                childI.Find("BuyButton").gameObject.SetActive(false);
+            } else {
+                childI.Find("BuyButton").gameObject.SetActive(true);
             }
         }
     }
@@ -152,7 +155,13 @@ public class UpgradeMenuController : MonoBehaviour {
             } else {
                 // Else mark as purchased
                 childI.Find("Cost").GetComponent<Text>().text = "PURCHASED";
-                Destroy(childI.Find("BuyButton").gameObject);
+            }
+            if (i != playerHealthIndex + 1) {
+
+                //Destroy(childI.Find("BuyButton").gameObject);
+                childI.Find("BuyButton").gameObject.SetActive(false);
+            } else {
+                childI.Find("BuyButton").gameObject.SetActive(true);
             }
         }
     }
@@ -169,7 +178,14 @@ public class UpgradeMenuController : MonoBehaviour {
             } else {
                 // Else mark as purchased
                 childI.Find("Cost").GetComponent<Text>().text = "PURCHASED";
-                Destroy(childI.Find("BuyButton").gameObject);
+            }
+
+            if (i != itemIndex + 1) {
+
+                //Destroy(childI.Find("BuyButton").gameObject);
+                childI.Find("BuyButton").gameObject.SetActive(false);
+            } else {
+                childI.Find("BuyButton").gameObject.SetActive(true);
             }
         }
     }
@@ -186,7 +202,11 @@ public class UpgradeMenuController : MonoBehaviour {
             } else {
                 // Else mark as purchased
                 childI.Find("Cost").GetComponent<Text>().text = "PURCHASED";
-                Destroy(childI.Find("BuyButton").gameObject);
+            }
+            if (i != itemIndex + 1) {
+                childI.Find("BuyButton").gameObject.SetActive(false);
+            } else {
+                childI.Find("BuyButton").gameObject.SetActive(true);
             }
         }
     }
@@ -203,7 +223,13 @@ public class UpgradeMenuController : MonoBehaviour {
             } else {
                 // Else mark as purchased
                 childI.Find("Cost").GetComponent<Text>().text = "PURCHASED";
-                Destroy(childI.Find("BuyButton").gameObject);
+            }
+            if (i != itemIndex + 1) {
+
+                //Destroy(childI.Find("BuyButton").gameObject);
+                childI.Find("BuyButton").gameObject.SetActive(false);
+            } else {
+                childI.Find("BuyButton").gameObject.SetActive(true);
             }
         }
     }
@@ -220,7 +246,13 @@ public class UpgradeMenuController : MonoBehaviour {
             } else {
                 // Else mark as purchased
                 childI.Find("Cost").GetComponent<Text>().text = "PURCHASED";
-                Destroy(childI.Find("BuyButton").gameObject);
+            }
+            if (i != itemIndex + 1) {
+
+                //Destroy(childI.Find("BuyButton").gameObject);
+                childI.Find("BuyButton").gameObject.SetActive(false);
+            } else {
+                childI.Find("BuyButton").gameObject.SetActive(true);
             }
         }
     }

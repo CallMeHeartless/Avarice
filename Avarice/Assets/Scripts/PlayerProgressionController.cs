@@ -73,6 +73,8 @@ public class PlayerProgressionController : MonoBehaviour {
         // If not running hard values (testing), then load the player's indices
         if (!testMode) {
             InitialiseIndices();
+        } else {
+
         }
 	}
 	
