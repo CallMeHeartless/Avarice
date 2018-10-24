@@ -62,10 +62,12 @@ public class EnemyAI : MonoBehaviour {
     IEnumerator AttackCooldown(float _fAttackCooldown)
     {
         yield return new WaitForSeconds(_fAttackCooldown);
-        agent.enabled = true;
-        anim.SetTrigger("Run");
-        bIsAttacking = false;
-
+        if(bIsAlive)
+        {
+            agent.enabled = true;
+            anim.SetTrigger("Run");
+            bIsAttacking = false;
+        }
     }
 
     void AttackDistance()
@@ -247,10 +249,13 @@ public class EnemyAI : MonoBehaviour {
 
     private IEnumerator RemoveStun(float _fDuration) {
         yield return new WaitForSeconds(_fDuration);
-        bIsStunned = false;
-        bCanAttack = true;
-        agent.enabled = true;
-        anim.SetTrigger("Recover");
+        if(iHealth > 0)
+        {
+            bIsStunned = false;
+            bCanAttack = true;
+            agent.enabled = true;
+            anim.SetTrigger("Recover");
+        }
     }
 
 }

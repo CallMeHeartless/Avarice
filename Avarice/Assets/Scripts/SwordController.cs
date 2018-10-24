@@ -27,6 +27,12 @@ public class SwordController : MonoBehaviour {
        if (other.CompareTag("Enemy") && PlayerController.bIsAttacking) {
             // Stun enemy
             other.GetComponent<EnemyAI>().iHealth = other.GetComponent<EnemyAI>().iHealth - iDamage;
+
+            if(!other.GetComponent<EnemyAI>().bPursue)
+            {
+                other.GetComponent<EnemyAI>().bPursue = true;
+            }
+
             if(other.GetComponent<EnemyAI>().iHealth > 0)
             {
                 other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
