@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     public float fAttackRate = 0.6f;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
+    public float fStaminaDrainLight = 15.0f;
+    public float fStaminaDrainHeavy = 25.0f;
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
     private float fPlayerStaminaCounter = 100.0f;
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Attack
-        if(!bIsAttacking && Input.GetButton("Fire1")) {
+        if(!bIsAttacking && Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
             Attack();
         }
 
@@ -184,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 
     // Adds coins to the players inventory, then directs game manager to update based on new total
     public void AddCoinsToInventory(int _iCoinValue) {
-        iCoinCount += _iCoinValue;
+        iCoinCount += Mathf.FloorToInt(_iCoinValue * fCoinMultiplier);
         // Update game manager with player's new current coin count
         GameManager.PlayerCollectedCoins(iCoinCount);
 
@@ -201,6 +203,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Attack() {
         bIsAttacking = true;
+        fPlayerStaminaCounter -= fStaminaDrainLight;
+        if(fPlayerStaminaCounter < 0) {
+            fPlayerStaminaCounter = 0;
+        }
         // Animation
         anim.SetTrigger("Attack");
         // cooldown
