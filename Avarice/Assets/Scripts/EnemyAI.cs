@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
+    public int iHealth = 3;
+    private bool bIsAlive = true;
+
     public GameObject player;
     public NavMeshAgent agent;
     public float fAttackRadius = 2.0f;
@@ -48,6 +51,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void Attack()
     {
+        agent.enabled = false;
         bIsAttacking = true;
         // Animation
         anim.SetTrigger("Attack");
@@ -58,6 +62,7 @@ public class EnemyAI : MonoBehaviour {
     IEnumerator AttackCooldown(float _fAttackCooldown)
     {
         yield return new WaitForSeconds(_fAttackCooldown);
+        agent.enabled = true;
         anim.SetTrigger("Run");
         bIsAttacking = false;
 
@@ -153,7 +158,19 @@ public class EnemyAI : MonoBehaviour {
             agent.SetDestination(hit.point);
         }
 
+        CoinMovement();
+
+        if (coin == null)
+        {
+            AttackDistance();
+        }
+    }
+
+    public void CoinMovement()
+    {
         coin = FindClosestCoin();
+
+        RaycastHit hit;
 
         if (coin != null)
         {
@@ -165,11 +182,6 @@ public class EnemyAI : MonoBehaviour {
             }
 
             coin = null;
-        }
-
-        if (coin == null)
-        {
-            AttackDistance();
         }
     }
 
@@ -186,19 +198,39 @@ public class EnemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (bIsStunned) {
-            return;
-        }
-        else if(bPursue)
+        if (agent.enabled)
         {
-            movement();
+            if (bIsStunned)
+            {
+                return;
+            }
+            else if (bPursue)
+            {
+                movement();
+            }
+            else
+            {
+                patrol();
+            }
         }
-        else
-        {
-            patrol();
-        }
-        
+        Death();
+    }
 
+    public void Death()
+    {
+        if(iHealth <= 0 && bIsAlive)
+        {
+            bIsAlive = false;
+            agent.enabled = false;
+            anim.SetTrigger("Hit");
+            StartCoroutine(Despawn());
+        }
+    }
+
+    public IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(gameObject);
     }
 
     public void StunEnemy(float _fDuration) {
@@ -207,7 +239,8 @@ public class EnemyAI : MonoBehaviour {
         }
         bIsStunned = true;
         bCanAttack = false;
-        agent.isStopped = true;
+        agent.enabled = false;
+        anim.ResetTrigger("Attack");
         anim.SetTrigger("Hit");
         StartCoroutine(RemoveStun(_fDuration));
     }
@@ -216,7 +249,7 @@ public class EnemyAI : MonoBehaviour {
         yield return new WaitForSeconds(_fDuration);
         bIsStunned = false;
         bCanAttack = true;
-        agent.isStopped = false;
+        agent.enabled = true;
         anim.SetTrigger("Recover");
     }
 
