@@ -2504,6 +2504,8 @@ GameObject:
   - component: {fileID: 223742364403328458}
   - component: {fileID: 114835671211684156}
   - component: {fileID: 114043860944223982}
+  - component: {fileID: 114864220215043770}
+  - component: {fileID: 114643322519325130}
   m_Layer: 5
   m_Name: UpgradeUI
   m_TagString: Untagged
@@ -16623,6 +16625,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Buy
+--- !u!114 &114643322519325130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611394564802622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632cba1f3194a9f4f94871ab5342eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114646890734426746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21169,6 +21182,60 @@ MonoBehaviour:
   m_Text: 'Coin Multiplier
 
     Level 2'
+--- !u!114 &114864220215043770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611394564802622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5acd7af2c9dac44e8d7bb6750aa921b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 0
+  ToxicityValues:
+  - 180
+  - 200
+  - 220
+  - 250
+  - 275
+  - 300
+  ToxicityUpgradeCosts: e8030000d007000070170000401f000010270000
+  ToxicityIndex: 0
+  HealthValues: 640000007d00000096000000af000000c8000000fa000000
+  HealthUpgradeCosts: e8030000d007000070170000401f000010270000
+  HealthIndex: 0
+  StaminaValues:
+  - 100
+  - 125
+  - 150
+  - 175
+  - 200
+  - 250
+  StaminaUpgradeCosts: e8030000d007000070170000401f000010270000
+  StaminaIndex: 0
+  TurnUndeadUseValues: 0100000002000000030000000400000005000000
+  TurnUndeadUpgradeCosts: c40900008813000010270000e02e0000
+  TurnUndeadIndex: 0
+  DamageMultiplierValues:
+  - 1
+  - 1.25
+  - 1.5
+  - 1.75
+  - 2
+  - 2.5
+  DamageUpgradeCosts: d0070000a00f0000401f0000e02e000050460000
+  DamageIndex: 0
+  CoinMultiplierValues:
+  - 1
+  - 1.05
+  - 1.1
+  - 1.15
+  - 1.2
+  - 1.25
+  CoinUpgradeCosts: dc050000c4090000401f000010270000204e0000
+  CoinMultiplierIndex: 0
 --- !u!114 &114868233281650744
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -63,9 +63,9 @@ public class PlayerProgressionController : MonoBehaviour {
     private int CoinMultiplierIndex = 0;
 
 	/// Use this for initialization
-	void Start () {
+	void Awake () {
         // Prevent more than one instance from existing
-        if(instance != null) {
+        if (instance != null) {
             Destroy(instance.gameObject);
         }
         instance = this;
