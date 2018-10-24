@@ -239,12 +239,17 @@ public class EnemyAI : MonoBehaviour {
         if (bIsStunned) {
             return;
         }
-        bIsStunned = true;
-        bCanAttack = false;
-        agent.enabled = false;
-        anim.ResetTrigger("Attack");
-        anim.SetTrigger("Hit");
-        StartCoroutine(RemoveStun(_fDuration));
+
+        if(iHealth > 0)
+        {
+            bIsStunned = true;
+            bCanAttack = false;
+            agent.enabled = false;
+            anim.ResetTrigger("Attack");
+            anim.SetTrigger("Hit");
+            StartCoroutine(RemoveStun(_fDuration));
+        }
+        
     }
 
     private IEnumerator RemoveStun(float _fDuration) {
