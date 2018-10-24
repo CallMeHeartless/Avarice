@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour {
 
     private Ray ray;
     private GameObject coin;
-    private Animator anim;
+    public Animator anim;
     private float fDistance;
 
     public bool bPursue = false;
@@ -176,7 +176,7 @@ public class EnemyAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = FindPlayer();
-        StunEnemy(2.0f);
+        //StunEnemy(2.0f);
         anim = GetComponentInChildren<Animator>();
         Patrolpoints = new GameObject[PatrolLength];
         SetPatrolPoints();
@@ -208,6 +208,7 @@ public class EnemyAI : MonoBehaviour {
         bIsStunned = true;
         bCanAttack = false;
         agent.isStopped = true;
+        anim.SetTrigger("Hit");
         StartCoroutine(RemoveStun(_fDuration));
     }
 
@@ -216,6 +217,7 @@ public class EnemyAI : MonoBehaviour {
         bIsStunned = false;
         bCanAttack = true;
         agent.isStopped = false;
+        anim.SetTrigger("Recover");
     }
 
 }

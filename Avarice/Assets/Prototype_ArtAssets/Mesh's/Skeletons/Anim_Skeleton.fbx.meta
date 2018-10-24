@@ -181,7 +181,7 @@ ModelImporter:
     - serializedVersion: 16
       name: hit
       takeName: hit
-      firstFrame: 120
+      firstFrame: 125
       lastFrame: 145
       wrapMode: 0
       orientationOffsetY: 0
