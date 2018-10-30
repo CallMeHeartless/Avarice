@@ -60,9 +60,9 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
         anim = GetComponentInChildren<Animator>();
-        // PlayerUIController.SetHealthSliderMaxValue(iLife);
         LoadPlayerVariables();
-        fPlayerStaminaCounter = fPlayerStamina;
+        InitialisePlayerUI();
+
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
 	}
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour {
                 fPlayerStaminaCounter = fPlayerStamina;
             }
             // Update slider
+            staminaMeter.value = fPlayerStaminaCounter;
         }
 
         // Constant toxicity raise
@@ -245,7 +246,7 @@ public class PlayerController : MonoBehaviour {
         fCoinMultiplier = PlayerProgressionController.GetCoinMultiplier();
     }
 
-    private void FindPlayerUI() {
+    private void InitialisePlayerUI() {
         // Find UI
         GameObject playerUI = GameObject.Find("InGameUI");
         if (playerUI == null) {
@@ -263,6 +264,10 @@ public class PlayerController : MonoBehaviour {
         staminaMeter = playerUI.transform.Find("StaminaBar").GetComponent<Slider>();
         staminaMeter.maxValue = fPlayerStamina;
         staminaMeter.value = fPlayerStamina;
+        fPlayerStaminaCounter = fPlayerStamina;
+        // Turn Undead
+        turnUndeadText = playerUI.transform.Find("Number of Undead").GetComponent<Text>();
+        turnUndeadText.text = iTurnUndeadUses.ToString();
 
     }
 
