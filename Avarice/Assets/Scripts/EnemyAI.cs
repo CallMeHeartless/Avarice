@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour {
     private int CurrPatrol;
     private bool bDecision = false;
 
-    private bool bIsStunned = false;
+    public bool bIsStunned = false;
     private bool bIsAttacking = false;
     private float fAttackRate = 0.6f;
     private bool bCanAttack = true;
