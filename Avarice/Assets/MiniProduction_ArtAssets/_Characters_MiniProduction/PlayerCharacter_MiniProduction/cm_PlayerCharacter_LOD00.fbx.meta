@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: f14e078eade4ba149b0e1f56fdc88da2
+guid: 15a304047c7833548b6a87ca7be9ff0a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: LightStone
+    2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Roof
+    4300000: PlayerCharacter_low
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -67,7 +67,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: f14e078eade4ba149b0e1f56fdc88da2
+guid: 2bc0f44200454c141a4ca83e5ed5e4f7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: LightStone
+    2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Roof
+    4300000: sm_PlayerSword
   externalObjects: {}
   materials:
     importMaterials: 0
