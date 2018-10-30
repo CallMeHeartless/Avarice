@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UpgradeMenuController : MonoBehaviour {
 
@@ -257,5 +258,13 @@ public class UpgradeMenuController : MonoBehaviour {
         }
     }
 
+    // Loads Level One - must be the next scene in build settings
+    public void LoadGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +  1);
+    }
+
+    public void ReturnToMainMenu() {
+        SceneManager.LoadScene(0);
+    }
 
 }

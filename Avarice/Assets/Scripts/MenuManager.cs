@@ -5,12 +5,12 @@ public class MenuManager : MonoBehaviour {
 
 	public void StartGame ()
 	{
-    	SceneManager.LoadScene(1);
+    	SceneManager.LoadScene(2);
 	}
 
     public void Controls()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void Back()
@@ -23,5 +23,9 @@ public class MenuManager : MonoBehaviour {
         Debug.Log("WE QUIT THE GAME!");
 		Application.Quit();
 	}
+
+    public void UpgradeMenu() {
+        SceneManager.LoadScene(1);
+    }
 
 }

@@ -861,6 +861,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114751769592873140, guid: 9585c6447e42f4f478a80cf1b1ac007e,
+        type: 2}
+      propertyPath: m_Text
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510162443756422, guid: 9585c6447e42f4f478a80cf1b1ac007e,
+        type: 2}
+      propertyPath: m_Text
+      value: Play Game
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9585c6447e42f4f478a80cf1b1ac007e, type: 2}
   m_IsPrefabAsset: 0
