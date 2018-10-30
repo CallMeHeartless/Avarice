@@ -298,6 +298,12 @@ public class PlayerProgressionController : MonoBehaviour {
 
     // Reset all player progression
     public static void ResetAll() {
-
+        PlayerPrefs.SetInt("TotalCoins", 0);
+        PlayerPrefs.SetInt("ToxicityIndex", 0);
+        PlayerPrefs.SetInt("HealthIndex", 0);
+        PlayerPrefs.SetInt("StaminaIndex", 0);
+        PlayerPrefs.SetInt("TurnUndeadIndex", 0);
+        PlayerPrefs.SetInt("DamageIndex", 0);
+        PlayerPrefs.SetInt("CoinMultiplierIndex", 0);
     }
 }
