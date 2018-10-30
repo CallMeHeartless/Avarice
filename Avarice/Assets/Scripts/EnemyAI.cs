@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
+    public int iHealth = 3;
+    private bool bIsAlive = true;
+
     public GameObject player;
     public NavMeshAgent agent;
     public float fAttackRadius = 2.0f;
@@ -21,7 +24,7 @@ public class EnemyAI : MonoBehaviour {
 
     private Ray ray;
     private GameObject coin;
-    private Animator anim;
+    public Animator anim;
     private float fDistance;
 
     public bool bPursue = false;
@@ -48,6 +51,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void Attack()
     {
+        agent.enabled = false;
         bIsAttacking = true;
         // Animation
         anim.SetTrigger("Attack");
@@ -58,9 +62,12 @@ public class EnemyAI : MonoBehaviour {
     IEnumerator AttackCooldown(float _fAttackCooldown)
     {
         yield return new WaitForSeconds(_fAttackCooldown);
-        anim.SetTrigger("Run");
-        bIsAttacking = false;
-
+        if(bIsAlive)
+        {
+            agent.enabled = true;
+            anim.SetTrigger("Run");
+            bIsAttacking = false;
+        }
     }
 
     void AttackDistance()
@@ -153,7 +160,19 @@ public class EnemyAI : MonoBehaviour {
             agent.SetDestination(hit.point);
         }
 
+        CoinMovement();
+
+        if (coin == null)
+        {
+            AttackDistance();
+        }
+    }
+
+    public void CoinMovement()
+    {
         coin = FindClosestCoin();
+
+        RaycastHit hit;
 
         if (coin != null)
         {
@@ -166,17 +185,12 @@ public class EnemyAI : MonoBehaviour {
 
             coin = null;
         }
-
-        if (coin == null)
-        {
-            AttackDistance();
-        }
     }
 
     // Use this for initialization
     void Start () {
         player = FindPlayer();
-        StunEnemy(2.0f);
+        //StunEnemy(2.0f);
         anim = GetComponentInChildren<Animator>();
         Patrolpoints = new GameObject[PatrolLength];
         SetPatrolPoints();
@@ -186,36 +200,73 @@ public class EnemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (bIsStunned) {
-            return;
-        }
-        else if(bPursue)
+        if (agent.enabled)
         {
-            movement();
+            if (bIsStunned)
+            {
+                return;
+            }
+            else if (bPursue)
+            {
+                movement();
+            }
+            else
+            {
+                patrol();
+            }
         }
-        else
-        {
-            patrol();
-        }
-        
+        Death();
+    }
 
+    public void Death()
+    {
+        if(iHealth <= 0 && bIsAlive)
+        {
+            bIsAlive = false;
+            agent.enabled = false;
+            anim.SetTrigger("Hit");
+            StartCoroutine(Despawn());
+        }
+    }
+
+    public IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(3.0f);
+        int r = Random.Range(1, 5);
+        if(r == 5)
+        {
+            GameObject coin = Instantiate(Resources.Load("Coin Pickup", typeof(GameObject))) as GameObject;
+            coin.transform.position = transform.position;
+        }
+        Destroy(gameObject);
     }
 
     public void StunEnemy(float _fDuration) {
         if (bIsStunned) {
             return;
         }
-        bIsStunned = true;
-        bCanAttack = false;
-        agent.isStopped = true;
-        StartCoroutine(RemoveStun(_fDuration));
+
+        if(iHealth > 0)
+        {
+            bIsStunned = true;
+            bCanAttack = false;
+            agent.enabled = false;
+            anim.ResetTrigger("Attack");
+            anim.SetTrigger("Hit");
+            StartCoroutine(RemoveStun(_fDuration));
+        }
+        
     }
 
     private IEnumerator RemoveStun(float _fDuration) {
         yield return new WaitForSeconds(_fDuration);
-        bIsStunned = false;
-        bCanAttack = true;
-        agent.isStopped = false;
+        if(iHealth > 0)
+        {
+            bIsStunned = false;
+            bCanAttack = true;
+            agent.enabled = true;
+            anim.SetTrigger("Recover");
+        }
     }
 
 }

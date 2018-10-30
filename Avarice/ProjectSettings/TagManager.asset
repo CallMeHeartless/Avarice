@@ -9,6 +9,7 @@ TagManager:
   - eSpawn
   - RoomCoinSpawn
   - Enemy
+  - Level1Patrol
   layers:
   - Default
   - TransparentFX
