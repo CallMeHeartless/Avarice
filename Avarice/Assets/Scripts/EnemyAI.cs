@@ -232,6 +232,12 @@ public class EnemyAI : MonoBehaviour {
     public IEnumerator Despawn()
     {
         yield return new WaitForSeconds(3.0f);
+        int r = Random.Range(1, 5);
+        if(r == 5)
+        {
+            GameObject coin = Instantiate(Resources.Load("Coin Pickup", typeof(GameObject))) as GameObject;
+            coin.transform.position = transform.position;
+        }
         Destroy(gameObject);
     }
 
