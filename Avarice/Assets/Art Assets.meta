@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Avarice/Assets/Art Assets.meta
 guid: d57b2ca3ea5daee47b89ecf4c1d12129
+=======
+guid: 0fe992b2c29110f4e8b526adda2ab434
+>>>>>>> 5cef00c2ca4c049aa1a0a9553eed324b62e96452:Avarice/Assets/Art Assets.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
