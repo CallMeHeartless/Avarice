@@ -259,11 +259,11 @@ public class UpgradeMenuController : MonoBehaviour {
     }
 
     // Loads Level One - must be the next scene in build settings
-    public static void LoadGame() {
+    public void LoadGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +  1);
     }
 
-    public static void ReturnToMainMenu() {
+    public void ReturnToMainMenu() {
         SceneManager.LoadScene(0);
     }
 
