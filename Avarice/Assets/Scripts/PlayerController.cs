@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour {
         // PlayerUIController.SetHealthSliderMaxValue(iLife);
         LoadPlayerVariables();
         fPlayerStaminaCounter = fPlayerStamina;
+        // Lock camera to screen
+        Cursor.lockState = CursorLockMode.Confined;
 	}
 	
 	// Update is called once per frame
