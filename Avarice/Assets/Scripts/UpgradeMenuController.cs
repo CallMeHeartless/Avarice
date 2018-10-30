@@ -52,6 +52,11 @@ public class UpgradeMenuController : MonoBehaviour {
         SetUpStamina();
         SetUpTurnUndead();
         SetUpCoinMultiplier();
+
+        // Enable video
+        if (!Cursor.visible) {
+            Cursor.visible = true;
+        }
 	}
 	
 	// Update is called once per frame
