@@ -4,18 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
+    private static PlayerController instance;
 
-    public static PlayerController instance;
-    public static bool bIsAttacking = false;
-    public int iLife = 180;
+    [Header("Player Progression Variables")]
+    private int iLife = 100;
+    private float fPlayerStamina = 100;
+    private float fPlayerToxicity = 180;
+    private float fPlayerToxicityCounter = 0.0f;
+    private int iTurnUndeadUses = 1;
+    private int iCoinCount = 0;
+    private float fCoinMultiplier = 1.0f;
+    private float fDamageMod = 1.0f;
+
+    [Header("Player Control Variables")]
     public float fSpeed = 5.0f;
     public float flookSensitivity = 10.0f;
     public float fAttackRate = 0.6f;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
-    public int iTurnUndeadUses = 1;
+    public float fStaminaDrainLight = 15.0f;
+    public float fStaminaDrainHeavy = 25.0f;
+    public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
-    public int iCoinCount = 0;
+    private float fPlayerStaminaCounter = 100.0f;
 
     [SerializeField]
     private int iCoinDistractionCost = 50;
@@ -27,6 +38,7 @@ public class PlayerController : MonoBehaviour {
     private ParticleSystem turnUndeadParticles;
     [SerializeField]
     private AudioSource coinStep;
+    
 
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
@@ -42,8 +54,9 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
         anim = GetComponentInChildren<Animator>();
-        PlayerUIController.SetHealthSliderMaxValue(iLife);
-        
+        // PlayerUIController.SetHealthSliderMaxValue(iLife);
+        LoadPlayerVariables();
+        fPlayerStaminaCounter = fPlayerStamina;
 	}
 	
 	// Update is called once per frame
@@ -53,7 +66,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         SetMovement();
-        BleedPlayer();
+
 
         if(Input.GetButton("Fire2")) { // Default key for now
             //CreateCoinPileDistraction();
@@ -70,11 +83,26 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Attack
-        if(!bIsAttacking && Input.GetButton("Fire1")) {
+        if(!bIsAttacking && Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
             Attack();
         }
 
-        //ResetAnimations();
+        // Constant stamina regen
+        if(fPlayerStaminaCounter < fPlayerStamina) {
+            fPlayerStaminaCounter += Time.deltaTime;
+            if(fPlayerStaminaCounter > fPlayerStamina) {
+                fPlayerStaminaCounter = fPlayerStamina;
+            }
+            // Update slider
+        }
+
+        // Constant toxicity raise
+        if(fPlayerToxicityCounter < fPlayerToxicity) {
+            fPlayerToxicityCounter += Time.deltaTime;
+            // Update slider
+        } else {
+            BleedPlayer();
+        }
     }
 
     void FixedUpdate() {
@@ -158,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 
     // Adds coins to the players inventory, then directs game manager to update based on new total
     public void AddCoinsToInventory(int _iCoinValue) {
-        iCoinCount += _iCoinValue;
+        iCoinCount += Mathf.FloorToInt(_iCoinValue * fCoinMultiplier);
         // Update game manager with player's new current coin count
         GameManager.PlayerCollectedCoins(iCoinCount);
 
@@ -175,6 +203,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Attack() {
         bIsAttacking = true;
+        fPlayerStaminaCounter -= fStaminaDrainLight;
+        if(fPlayerStaminaCounter < 0) {
+            fPlayerStaminaCounter = 0;
+        }
         // Animation
         anim.SetTrigger("Attack");
         // cooldown
@@ -193,6 +225,15 @@ public class PlayerController : MonoBehaviour {
         anim.ResetTrigger("Pickup");
         anim.ResetTrigger("Run");
         anim.ResetTrigger("Throw");
+    }
+
+    private void LoadPlayerVariables() {
+        iLife = PlayerProgressionController.GetHealth();
+        fPlayerToxicity = PlayerProgressionController.GetToxicity();
+        fPlayerStamina = PlayerProgressionController.GetStamina();
+        iTurnUndeadUses = PlayerProgressionController.GetTurnUndead();
+        fDamageMod = PlayerProgressionController.GetDamage();
+        fCoinMultiplier = PlayerProgressionController.GetCoinMultiplier();
     }
 
 }

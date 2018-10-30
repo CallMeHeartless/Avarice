@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour {
             if(groupName == go.GetComponent<eSpawn>().groupName)
             {
                 GameObject SkullBoi = Instantiate(Resources.Load("SkullBoi", typeof(GameObject))) as GameObject;
-                SkullBoi.transform.position = go.transform.position;
+                SkullBoi.GetComponent<EnemyAI>().agent.Warp(go.transform.position);
+                //SkullBoi.transform.position = go.transform.position;
             }
         }
     }

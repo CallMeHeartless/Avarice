@@ -9,6 +9,11 @@ public class EnemyAI : MonoBehaviour {
     public NavMeshAgent agent;
     public float fAttackRadius = 2.0f;
 
+    public GameObject[] Patrolpoints;
+    public int PatrolLength = 3;
+    private int CurrPatrol;
+    private bool bDecision = false;
+
     private bool bIsStunned = false;
     private bool bIsAttacking = false;
     private float fAttackRate = 0.6f;
@@ -18,6 +23,8 @@ public class EnemyAI : MonoBehaviour {
     private GameObject coin;
     private Animator anim;
     private float fDistance;
+
+    public bool bPursue = false;
 
     public GameObject FindClosestCoin()
     {
@@ -53,24 +60,33 @@ public class EnemyAI : MonoBehaviour {
         yield return new WaitForSeconds(_fAttackCooldown);
         anim.SetTrigger("Run");
         bIsAttacking = false;
-        
+
     }
 
     void AttackDistance()
     {
         fDistance = (player.transform.position - transform.position).magnitude;
-        
-        if(fDistance < fAttackRadius)
+
+        if (fDistance < fAttackRadius)
         {
             if (bCanAttack == true)
             {
                 Attack();
             }
-            
+
         }
     }
 
-
+    public void SetPatrolPoints()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Level1Patrol");
+        for (int i = 0; i < Patrolpoints.Length; i++)
+        {
+            int Rand = Random.Range(0, gos.Length);
+            Patrolpoints[i] = gos[Rand];
+        }
+    }
 
     public GameObject FindPlayer()
     {
@@ -92,11 +108,79 @@ public class EnemyAI : MonoBehaviour {
         return closest;
     }
 
+    public void SetPatrolPoint()
+    {
+        CurrPatrol = Random.Range(0, Patrolpoints.Length);
+    }
+
+    public void patrol()
+    {
+        ray.origin = Patrolpoints[CurrPatrol].transform.position;
+        ray.direction = Vector3.down;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            agent.SetDestination(hit.point);
+        }
+
+        if((transform.position.x == Patrolpoints[CurrPatrol].transform.position.x) && (transform.position.z == Patrolpoints[CurrPatrol].transform.position.z) && !bDecision)
+        {
+            StartCoroutine(PatrolAgain());
+            bDecision = true;
+            anim.SetTrigger("Hit");
+        }
+    }
+
+    public IEnumerator PatrolAgain()
+    {
+        yield return new WaitForSeconds(2);
+        SetPatrolPoint();
+        bDecision = false;
+        anim.SetTrigger("Recover");
+    }
+
+    public void movement()
+    {
+        ray.origin = player.transform.position;
+        ray.direction = Vector3.down;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            agent.SetDestination(hit.point);
+        }
+
+        coin = FindClosestCoin();
+
+        if (coin != null)
+        {
+            ray.origin = coin.transform.position;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                agent.SetDestination(hit.point);
+            }
+
+            coin = null;
+        }
+
+        if (coin == null)
+        {
+            AttackDistance();
+        }
+    }
+
     // Use this for initialization
     void Start () {
         player = FindPlayer();
         StunEnemy(2.0f);
         anim = GetComponentInChildren<Animator>();
+        Patrolpoints = new GameObject[PatrolLength];
+        SetPatrolPoints();
+        SetPatrolPoint();
     }
 
     // Update is called once per frame
@@ -105,34 +189,13 @@ public class EnemyAI : MonoBehaviour {
         if (bIsStunned) {
             return;
         }
-
-        ray.origin = player.transform.position;
-        ray.direction = Vector3.down;
-
-        RaycastHit hit;
-
-        if(Physics.Raycast(ray, out hit))
+        else if(bPursue)
         {
-            agent.SetDestination(hit.point);
+            movement();
         }
-
-        coin = FindClosestCoin();
-
-        if(coin != null)
+        else
         {
-            ray.origin = coin.transform.position;
-
-            if(Physics.Raycast(ray, out hit))
-            {
-                agent.SetDestination(hit.point);
-            }
-
-            coin = null;
-        }
-
-        if(coin == null)
-        {
-            AttackDistance();
+            patrol();
         }
         
 
