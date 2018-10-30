@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;   
 
 public class PlayerController : MonoBehaviour {
     private static PlayerController instance;
@@ -39,7 +40,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private AudioSource coinStep;
     
-
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
@@ -48,8 +48,14 @@ public class PlayerController : MonoBehaviour {
     private Camera _camera;
     private float fBleedCounter = 0.0f;
 
-	// Use this for initialization
-	void Start () {
+    // UI Variables
+    private Image toxicityMeter;
+    private Slider healthMeter;
+    private Slider staminaMeter;
+    private Text turnUndeadText;
+
+    // Use this for initialization
+    void Start () {
         instance = this;
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
@@ -57,6 +63,8 @@ public class PlayerController : MonoBehaviour {
         // PlayerUIController.SetHealthSliderMaxValue(iLife);
         LoadPlayerVariables();
         fPlayerStaminaCounter = fPlayerStamina;
+        // Lock camera to screen
+        Cursor.lockState = CursorLockMode.Confined;
 	}
 	
 	// Update is called once per frame
@@ -157,7 +165,8 @@ public class PlayerController : MonoBehaviour {
 
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
-        PlayerUIController.UpdateHealthSlider(iLife);
+        //PlayerUIController.UpdateHealthSlider(iLife);
+        healthMeter.value = iLife;
         if(iLife <= 0) {
             SceneManager.LoadScene(0);
         }
@@ -234,6 +243,27 @@ public class PlayerController : MonoBehaviour {
         iTurnUndeadUses = PlayerProgressionController.GetTurnUndead();
         fDamageMod = PlayerProgressionController.GetDamage();
         fCoinMultiplier = PlayerProgressionController.GetCoinMultiplier();
+    }
+
+    private void FindPlayerUI() {
+        // Find UI
+        GameObject playerUI = GameObject.Find("InGameUI");
+        if (playerUI == null) {
+            Debug.LogError("ERROR: PlayerUI could not be found. Sliders could not be initialised.");
+            return;
+        }
+        // Toxicity meter
+        toxicityMeter = playerUI.transform.Find("UndeadTimer/TimerBar").GetComponent<Image>();
+        toxicityMeter.fillAmount = 0;
+        // Health meter
+        healthMeter = playerUI.transform.Find("HealthBar").GetComponent<Slider>();
+        healthMeter.maxValue = iLife;
+        healthMeter.value = iLife;
+        // Stamina meter
+        staminaMeter = playerUI.transform.Find("StaminaBar").GetComponent<Slider>();
+        staminaMeter.maxValue = fPlayerStamina;
+        staminaMeter.value = fPlayerStamina;
+
     }
 
 }

@@ -7,6 +7,7 @@ public class PlayerProgressionController : MonoBehaviour {
     private static PlayerProgressionController instance = null;
     [SerializeField]
     private bool testMode = false;
+    public int testCoins = 5000;
 
     // Toxicity
     [Header("Toxicity")]
@@ -63,15 +64,17 @@ public class PlayerProgressionController : MonoBehaviour {
     private int CoinMultiplierIndex = 0;
 
 	/// Use this for initialization
-	void Start () {
+	void Awake () {
         // Prevent more than one instance from existing
-        if(instance != null) {
+        if (instance != null) {
             Destroy(instance.gameObject);
         }
         instance = this;
         // If not running hard values (testing), then load the player's indices
         if (!testMode) {
             InitialiseIndices();
+        } else {
+
         }
 	}
 	
@@ -291,5 +294,16 @@ public class PlayerProgressionController : MonoBehaviour {
             Debug.LogError("ERROR: Progression Property not recognised. Null array returned.");
             return null;
         }
+    }
+
+    // Reset all player progression
+    public static void ResetAll() {
+        PlayerPrefs.SetInt("TotalCoins", 0);
+        PlayerPrefs.SetInt("ToxicityIndex", 0);
+        PlayerPrefs.SetInt("HealthIndex", 0);
+        PlayerPrefs.SetInt("StaminaIndex", 0);
+        PlayerPrefs.SetInt("TurnUndeadIndex", 0);
+        PlayerPrefs.SetInt("DamageIndex", 0);
+        PlayerPrefs.SetInt("CoinMultiplierIndex", 0);
     }
 }
