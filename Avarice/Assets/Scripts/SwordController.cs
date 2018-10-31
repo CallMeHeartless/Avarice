@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordController : MonoBehaviour {
 
-    public int iDamage = 1;
+    public float fDamage = 10.0f;
 
     public static SwordController instance;
     [SerializeField]
@@ -26,16 +26,19 @@ public class SwordController : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
        if (other.CompareTag("Enemy") && PlayerController.bIsAttacking) {
             // Stun enemy
-            other.GetComponent<EnemyAI>().iHealth = other.GetComponent<EnemyAI>().iHealth - iDamage;
-
-            if(!other.GetComponent<EnemyAI>().bPursue)
+            if(!other.GetComponent<EnemyAI>().bIsStunned)
             {
-                other.GetComponent<EnemyAI>().bPursue = true;
-            }
+                other.GetComponent<EnemyAI>().iHealth = other.GetComponent<EnemyAI>().iHealth - Mathf.FloorToInt(fDamage * PlayerController.GetAttackMultiplier());
 
-            if(other.GetComponent<EnemyAI>().iHealth > 0)
-            {
-                other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
+                if (!other.GetComponent<EnemyAI>().bPursue)
+                {
+                    other.GetComponent<EnemyAI>().bPursue = true;
+                }
+
+                if (other.GetComponent<EnemyAI>().iHealth > 0)
+                {
+                    other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
+                }
             }
             attackAudio.Play();
             
