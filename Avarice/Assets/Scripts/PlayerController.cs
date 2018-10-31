@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour {
         }
         // Update slider
         staminaMeter.value = fPlayerStaminaCounter;
-        Debug.Log(fPlayerStaminaCounter);
 
         // Constant toxicity raise
         if (fPlayerToxicityCounter < fPlayerToxicity) {
@@ -186,7 +185,6 @@ public class PlayerController : MonoBehaviour {
 
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
-        //PlayerUIController.UpdateHealthSlider(iLife);
         healthMeter.value = iLife;
         if(iLife <= 0) {
             SceneManager.LoadScene(0);
@@ -233,6 +231,9 @@ public class PlayerController : MonoBehaviour {
 
     private void Attack() {
         bIsAttacking = true;
+        if(fPlayerStaminaCounter <= 0.0f) {
+            return;
+        }
         fPlayerStaminaCounter -= fStaminaDrainLight;
         if(fPlayerStaminaCounter < 0) {
             fPlayerStaminaCounter = 0;
