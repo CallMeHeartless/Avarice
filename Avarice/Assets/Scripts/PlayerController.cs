@@ -307,4 +307,11 @@ public class PlayerController : MonoBehaviour {
         return instance.fDamageMod;
     }
 
+    public void DrainStamina(int _iDamage) {
+        fPlayerStaminaCounter -= _iDamage;
+        // Stamina regain delay
+        bIsRegainingStamina = false;
+        StartCoroutine(StaminaRegainDelay());
+    }
+
 }

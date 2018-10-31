@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
-    public int iHealth = 3;
+    public int iHealth = 30;
     private bool bIsAlive = true;
 
     public GameObject player;
@@ -267,6 +267,10 @@ public class EnemyAI : MonoBehaviour {
             agent.enabled = true;
             anim.SetTrigger("Recover");
         }
+    }
+
+    public void DamageEnemy(int _iDamage) {
+        iHealth -= _iDamage;
     }
 
 }

@@ -59,6 +59,11 @@ public class FlameTrapController : MonoBehaviour {
         if (other.CompareTag("Player")) {
             Debug.Log("Hit player");
             other.GetComponent<PlayerController>().DamagePlayer(FireDamage);
+        }else if (other.CompareTag("Enemy")) {
+            if (other.GetComponent<EnemyAI>().bPursue) { // Ignore fire if just patrolling?
+                other.GetComponent<EnemyAI>().DamageEnemy(FireDamage);
+            }
+
         }
     }
 
