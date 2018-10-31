@@ -73,14 +73,20 @@ public class PlayerProgressionController : MonoBehaviour {
         // If not running hard values (testing), then load the player's indices
         if (!testMode) {
             InitialiseIndices();
-        } else {
-
-        }
+        } 
 	}
 	
 	/// Update is called once per frame
 	void Update () {
-		
+		// Debugging controls
+        if(Input.GetKeyDown(KeyCode.O) && Input.GetKeyDown(KeyCode.P)) {
+            AddToTotalCoins(50000);
+            Debug.Log("50,000 coins added");
+        }
+        if(Input.GetKeyDown(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.UpArrow)) {
+            ResetAll();
+            Debug.Log("All values have been reset");
+        }
 	}
 
     public static void AddToTotalCoins(int _iCoins) {
@@ -306,4 +312,5 @@ public class PlayerProgressionController : MonoBehaviour {
         PlayerPrefs.SetInt("DamageIndex", 0);
         PlayerPrefs.SetInt("CoinMultiplierIndex", 0);
     }
+
 }
