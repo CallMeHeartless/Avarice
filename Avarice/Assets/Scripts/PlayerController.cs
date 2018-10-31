@@ -313,5 +313,4 @@ public class PlayerController : MonoBehaviour {
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
     }
-
 }
