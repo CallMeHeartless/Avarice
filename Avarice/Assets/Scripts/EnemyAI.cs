@@ -21,6 +21,8 @@ public class EnemyAI : MonoBehaviour {
     private bool bIsAttacking = false;
     private float fAttackRate = 0.6f;
     private bool bCanAttack = true;
+    public bool bHeavyAttack = false;
+    public bool bHeavyAttacking = false;
 
     private Ray ray;
     private GameObject coin;
@@ -49,6 +51,44 @@ public class EnemyAI : MonoBehaviour {
         return closest;
     }
 
+    public void ChooseAttack()
+    {
+        int i = Random.Range(1, 3);
+
+        if(i == 1)
+        {
+            bHeavyAttack = true;
+        }
+        else
+        {
+            bHeavyAttack = false;
+        }
+    }
+
+    private void HeavyAttack()
+    {
+        if((agent.remainingDistance <= 15.0f) && !bHeavyAttacking)
+        {
+            agent.stoppingDistance = 15.0f;
+            bHeavyAttacking = true;
+            StartCoroutine(Lunge(2.0f));
+
+        }
+    }
+
+    IEnumerator Lunge(float _LungeTimer)
+    {
+        yield return new WaitForSeconds(_LungeTimer);
+        agent.enabled = true;
+        agent.stoppingDistance = 1.0f;
+        agent.acceleration = 20.0f;
+        agent.angularSpeed = 300.0f;
+        agent.speed = 100.0f;
+        anim.SetTrigger("Attack");
+        bIsAttacking = true;
+        StartCoroutine(AttackCooldown(fAttackRate));
+    }
+
     private void Attack()
     {
         agent.enabled = false;
@@ -67,6 +107,11 @@ public class EnemyAI : MonoBehaviour {
             agent.enabled = true;
             anim.SetTrigger("Run");
             bIsAttacking = false;
+            bHeavyAttacking = false;
+            agent.angularSpeed = 120.0f;
+            agent.acceleration = 8.0f;
+            agent.speed = 5.0f;
+            ChooseAttack();
         }
     }
 
@@ -74,13 +119,20 @@ public class EnemyAI : MonoBehaviour {
     {
         fDistance = (player.transform.position - transform.position).magnitude;
 
-        if (fDistance < fAttackRadius)
+        if(bHeavyAttack && bPursue)
         {
-            if (bCanAttack == true)
+            HeavyAttack();
+        }
+        else
+        {
+            if ((fDistance < fAttackRadius) && bPursue)
             {
-                Attack();
-            }
+                if (bCanAttack == true)
+                {
+                    Attack();
+                }
 
+            }
         }
     }
 
@@ -190,6 +242,7 @@ public class EnemyAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = FindPlayer();
+        ChooseAttack();
         //StunEnemy(2.0f);
         anim = GetComponentInChildren<Animator>();
         Patrolpoints = new GameObject[PatrolLength];
