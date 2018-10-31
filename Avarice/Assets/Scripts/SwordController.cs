@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordController : MonoBehaviour {
 
-    public int iDamage = 1;
+    public float fDamage = 10.0f;
 
     public static SwordController instance;
     [SerializeField]
@@ -28,7 +28,7 @@ public class SwordController : MonoBehaviour {
             // Stun enemy
             if(!other.GetComponent<EnemyAI>().bIsStunned)
             {
-                other.GetComponent<EnemyAI>().iHealth = other.GetComponent<EnemyAI>().iHealth - iDamage;
+                other.GetComponent<EnemyAI>().iHealth = other.GetComponent<EnemyAI>().iHealth - Mathf.FloorToInt(fDamage * PlayerController.GetAttackMultiplier());
 
                 if (!other.GetComponent<EnemyAI>().bPursue)
                 {
