@@ -1270,7 +1270,7 @@ MonoBehaviour:
   iHealth: 3
   player: {fileID: 0}
   agent: {fileID: 195323768068183564}
-  fAttackRadius: 1
+  fAttackRadius: 1.5
   Patrolpoints: []
   PatrolLength: 3
   bIsStunned: 0
