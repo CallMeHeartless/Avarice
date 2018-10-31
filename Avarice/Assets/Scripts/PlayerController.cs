@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour {
     private Slider healthMeter;
     private Slider staminaMeter;
     private Text turnUndeadText;
+    private Text coinText;
 
     // Use this for initialization
     void Start () {
@@ -105,13 +106,13 @@ public class PlayerController : MonoBehaviour {
             if(fPlayerStaminaCounter > fPlayerStamina) {
                 fPlayerStaminaCounter = fPlayerStamina;
             }
-            // Update slider
-            staminaMeter.value = fPlayerStaminaCounter;
-            Debug.Log(fPlayerStaminaCounter);
         }
+        // Update slider
+        staminaMeter.value = fPlayerStaminaCounter;
+        Debug.Log(fPlayerStaminaCounter);
 
         // Constant toxicity raise
-        if(fPlayerToxicityCounter < fPlayerToxicity) {
+        if (fPlayerToxicityCounter < fPlayerToxicity) {
             fPlayerToxicityCounter += Time.deltaTime;
             if(fPlayerToxicityCounter > fPlayerToxicity) {
                 fPlayerToxicityCounter = fPlayerToxicity;
@@ -220,13 +221,13 @@ public class PlayerController : MonoBehaviour {
         GameManager.PlayerCollectedCoins(iCoinCount);
 
         // Update text
-       // PlayerUIController.UpdateCoinText(iCoinCount);
+        coinText.text = iCoinCount.ToString();
     }
 
     public static int PayTribute() {
         int temp = instance.iCoinCount;
         instance.iCoinCount = 0;
-        PlayerUIController.UpdateCoinText(0);
+        instance.coinText.text = instance.iCoinCount.ToString();
         return temp;
     }
 
@@ -236,6 +237,7 @@ public class PlayerController : MonoBehaviour {
         if(fPlayerStaminaCounter < 0) {
             fPlayerStaminaCounter = 0;
         }
+        // Stamina regain delay
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
         // Animation
@@ -274,6 +276,8 @@ public class PlayerController : MonoBehaviour {
             Debug.LogError("ERROR: PlayerUI could not be found. Sliders could not be initialised.");
             return;
         }
+        // Coin text
+        coinText = playerUI.transform.Find("TextBackground/Text").GetComponent<Text>();
         // Toxicity meter
         toxicityMeter = playerUI.transform.Find("UndeadTimer/TimerBar").GetComponent<Image>();
         toxicityMeter.fillAmount = 0;
@@ -296,6 +300,10 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator StaminaRegainDelay() {
         yield return new WaitForSeconds(fStaminaRegainDelay);
         bIsRegainingStamina = true;
+    }
+
+    public static float GetAttackMultiplier() {
+        return instance.fDamageMod;
     }
 
 }
