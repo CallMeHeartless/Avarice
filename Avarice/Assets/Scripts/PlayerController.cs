@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour {
     public int iBleedAmount = 10;
     public float fStaminaDrainLight = 15.0f;
     public float fStaminaDrainHeavy = 25.0f;
+    public float fSprintMultiplier = 1.6f;
+    public float fStaminaRegainDelay = 2.0f;
+    private bool bIsRegainingStamina = false;
+    public float fSprintDrain = 10.0f;
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
     private float fPlayerStaminaCounter = 100.0f;
@@ -96,19 +100,24 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Constant stamina regen
-        if(fPlayerStaminaCounter < fPlayerStamina) {
+        if(fPlayerStaminaCounter < fPlayerStamina && bIsRegainingStamina) {
             fPlayerStaminaCounter += Time.deltaTime;
             if(fPlayerStaminaCounter > fPlayerStamina) {
                 fPlayerStaminaCounter = fPlayerStamina;
             }
             // Update slider
             staminaMeter.value = fPlayerStaminaCounter;
+            Debug.Log(fPlayerStaminaCounter);
         }
 
         // Constant toxicity raise
         if(fPlayerToxicityCounter < fPlayerToxicity) {
             fPlayerToxicityCounter += Time.deltaTime;
+            if(fPlayerToxicityCounter > fPlayerToxicity) {
+                fPlayerToxicityCounter = fPlayerToxicity;
+            }
             // Update slider
+            toxicityMeter.fillAmount = fPlayerToxicityCounter / fPlayerToxicity;
         } else {
             BleedPlayer();
         }
@@ -136,6 +145,16 @@ public class PlayerController : MonoBehaviour {
         Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
 
         velocity = (forwardMovement + sideMovement).normalized * fSpeed;
+        if(Input.GetKey(KeyCode.LeftShift) && fPlayerStaminaCounter > 0.0f) {
+            velocity *= fSprintMultiplier;
+            fPlayerStaminaCounter -= Time.deltaTime * fSprintDrain;
+            if(fPlayerStaminaCounter < 0.0f) {
+                fPlayerStaminaCounter = 0.0f;
+            }
+            // Set stamina regen delay
+            bIsRegainingStamina = false;
+            StartCoroutine(StaminaRegainDelay());
+        }
         if(velocity.sqrMagnitude > 0) {
             anim.SetTrigger("Run");
             if (!coinStep.isPlaying) {
@@ -201,7 +220,7 @@ public class PlayerController : MonoBehaviour {
         GameManager.PlayerCollectedCoins(iCoinCount);
 
         // Update text
-        PlayerUIController.UpdateCoinText(iCoinCount);
+       // PlayerUIController.UpdateCoinText(iCoinCount);
     }
 
     public static int PayTribute() {
@@ -269,6 +288,12 @@ public class PlayerController : MonoBehaviour {
         turnUndeadText = playerUI.transform.Find("Number of Undead").GetComponent<Text>();
         turnUndeadText.text = iTurnUndeadUses.ToString();
 
+    }
+
+    // A small delay before the player can regain stamina
+    private IEnumerator StaminaRegainDelay() {
+        yield return new WaitForSeconds(fStaminaRegainDelay);
+        bIsRegainingStamina = true;
     }
 
 }
