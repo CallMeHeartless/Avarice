@@ -236,6 +236,8 @@ public class PlayerController : MonoBehaviour {
         if(fPlayerStaminaCounter < 0) {
             fPlayerStaminaCounter = 0;
         }
+        bIsRegainingStamina = false;
+        StartCoroutine(StaminaRegainDelay());
         // Animation
         anim.SetTrigger("Attack");
         // cooldown
