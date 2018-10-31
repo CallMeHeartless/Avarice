@@ -88,7 +88,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1093451695574166
 GameObject:
@@ -241,7 +241,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1381105642150002
 GameObject:
@@ -855,7 +855,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1958438266140056
 GameObject:
@@ -1650,8 +1650,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571240803437242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.287, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 6.814803, y: 1.0000001, z: 0.17514698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4035063062645330}
@@ -2159,15 +2159,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5cda1cf69081740ab334e59f0e5db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iLife: 180
   fSpeed: 5
   flookSensitivity: 5
   fAttackRate: 0.6
   fBleedInterval: 10
   iBleedAmount: 10
-  iTurnUndeadUses: 1
+  fStaminaDrainLight: 15
+  fStaminaDrainHeavy: 25
+  fSprintMultiplier: 1.6
+  fStaminaRegainDelay: 2
+  fSprintDrain: 10
   fTurnDuration: 10
-  iCoinCount: 0
   iCoinDistractionCost: 1
   coinThrow: {fileID: 4359963063415452}
   turnUndeadParticles: {fileID: 198953940387278812}
@@ -2194,6 +2196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e84ebc4d82b934b8fd291d91def9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iDamage: 1
+  attackAudio: {fileID: 0}
 --- !u!136 &136475680517555214
 CapsuleCollider:
   m_ObjectHideFlags: 1

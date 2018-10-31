@@ -61,15 +61,17 @@ public class UpgradeMenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
+    }
 
     public void AttemptToPurchase(string item) {
+        Debug.Log(item);
         if(item == "Toxicity") {
+            Debug.Log("Attempting to purchase toxicity");
             if (PlayerProgressionController.UpgradeToxicity()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-
+                Debug.Log("Purchased");
                 // Rebuild menu
                 SetUpToxicity();
             }
@@ -270,6 +272,10 @@ public class UpgradeMenuController : MonoBehaviour {
 
     public void ReturnToMainMenu() {
         SceneManager.LoadScene(0);
+    }
+
+    public void TestClick() {
+        Debug.Log("Click");
     }
 
 }

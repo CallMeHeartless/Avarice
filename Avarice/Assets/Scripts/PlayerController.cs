@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour {
     public int iBleedAmount = 10;
     public float fStaminaDrainLight = 15.0f;
     public float fStaminaDrainHeavy = 25.0f;
+    public float fSprintMultiplier = 1.6f;
+    public float fStaminaRegainDelay = 2.0f;
+    private bool bIsRegainingStamina = false;
+    public float fSprintDrain = 10.0f;
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
     private float fPlayerStaminaCounter = 100.0f;
@@ -53,6 +57,7 @@ public class PlayerController : MonoBehaviour {
     private Slider healthMeter;
     private Slider staminaMeter;
     private Text turnUndeadText;
+    private Text coinText;
 
     // Use this for initialization
     void Start () {
@@ -60,9 +65,9 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
         anim = GetComponentInChildren<Animator>();
-        // PlayerUIController.SetHealthSliderMaxValue(iLife);
         LoadPlayerVariables();
-        fPlayerStaminaCounter = fPlayerStamina;
+        InitialisePlayerUI();
+
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
 	}
@@ -96,18 +101,23 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Constant stamina regen
-        if(fPlayerStaminaCounter < fPlayerStamina) {
+        if(fPlayerStaminaCounter < fPlayerStamina && bIsRegainingStamina) {
             fPlayerStaminaCounter += Time.deltaTime;
             if(fPlayerStaminaCounter > fPlayerStamina) {
                 fPlayerStaminaCounter = fPlayerStamina;
             }
-            // Update slider
         }
+        // Update slider
+        staminaMeter.value = fPlayerStaminaCounter;
 
         // Constant toxicity raise
-        if(fPlayerToxicityCounter < fPlayerToxicity) {
+        if (fPlayerToxicityCounter < fPlayerToxicity) {
             fPlayerToxicityCounter += Time.deltaTime;
+            if(fPlayerToxicityCounter > fPlayerToxicity) {
+                fPlayerToxicityCounter = fPlayerToxicity;
+            }
             // Update slider
+            toxicityMeter.fillAmount = fPlayerToxicityCounter / fPlayerToxicity;
         } else {
             BleedPlayer();
         }
@@ -135,6 +145,16 @@ public class PlayerController : MonoBehaviour {
         Vector3 sideMovement = transform.right * Input.GetAxisRaw("Horizontal");
 
         velocity = (forwardMovement + sideMovement).normalized * fSpeed;
+        if(Input.GetKey(KeyCode.LeftShift) && fPlayerStaminaCounter > 0.0f) {
+            velocity *= fSprintMultiplier;
+            fPlayerStaminaCounter -= Time.deltaTime * fSprintDrain;
+            if(fPlayerStaminaCounter < 0.0f) {
+                fPlayerStaminaCounter = 0.0f;
+            }
+            // Set stamina regen delay
+            bIsRegainingStamina = false;
+            StartCoroutine(StaminaRegainDelay());
+        }
         if(velocity.sqrMagnitude > 0) {
             anim.SetTrigger("Run");
             if (!coinStep.isPlaying) {
@@ -165,7 +185,6 @@ public class PlayerController : MonoBehaviour {
 
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
-        //PlayerUIController.UpdateHealthSlider(iLife);
         healthMeter.value = iLife;
         if(iLife <= 0) {
             SceneManager.LoadScene(0);
@@ -200,22 +219,28 @@ public class PlayerController : MonoBehaviour {
         GameManager.PlayerCollectedCoins(iCoinCount);
 
         // Update text
-        PlayerUIController.UpdateCoinText(iCoinCount);
+        coinText.text = iCoinCount.ToString();
     }
 
     public static int PayTribute() {
         int temp = instance.iCoinCount;
         instance.iCoinCount = 0;
-        PlayerUIController.UpdateCoinText(0);
+        instance.coinText.text = instance.iCoinCount.ToString();
         return temp;
     }
 
     private void Attack() {
         bIsAttacking = true;
+        if(fPlayerStaminaCounter <= 0.0f) {
+            return;
+        }
         fPlayerStaminaCounter -= fStaminaDrainLight;
         if(fPlayerStaminaCounter < 0) {
             fPlayerStaminaCounter = 0;
         }
+        // Stamina regain delay
+        bIsRegainingStamina = false;
+        StartCoroutine(StaminaRegainDelay());
         // Animation
         anim.SetTrigger("Attack");
         // cooldown
@@ -245,13 +270,15 @@ public class PlayerController : MonoBehaviour {
         fCoinMultiplier = PlayerProgressionController.GetCoinMultiplier();
     }
 
-    private void FindPlayerUI() {
+    private void InitialisePlayerUI() {
         // Find UI
         GameObject playerUI = GameObject.Find("InGameUI");
         if (playerUI == null) {
             Debug.LogError("ERROR: PlayerUI could not be found. Sliders could not be initialised.");
             return;
         }
+        // Coin text
+        coinText = playerUI.transform.Find("TextBackground/Text").GetComponent<Text>();
         // Toxicity meter
         toxicityMeter = playerUI.transform.Find("UndeadTimer/TimerBar").GetComponent<Image>();
         toxicityMeter.fillAmount = 0;
@@ -263,7 +290,21 @@ public class PlayerController : MonoBehaviour {
         staminaMeter = playerUI.transform.Find("StaminaBar").GetComponent<Slider>();
         staminaMeter.maxValue = fPlayerStamina;
         staminaMeter.value = fPlayerStamina;
+        fPlayerStaminaCounter = fPlayerStamina;
+        // Turn Undead
+        turnUndeadText = playerUI.transform.Find("Number of Undead").GetComponent<Text>();
+        turnUndeadText.text = iTurnUndeadUses.ToString();
 
+    }
+
+    // A small delay before the player can regain stamina
+    private IEnumerator StaminaRegainDelay() {
+        yield return new WaitForSeconds(fStaminaRegainDelay);
+        bIsRegainingStamina = true;
+    }
+
+    public static float GetAttackMultiplier() {
+        return instance.fDamageMod;
     }
 
 }
