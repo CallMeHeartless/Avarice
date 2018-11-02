@@ -5,19 +5,29 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
+    public int iHealth = 30;
+    private bool bIsAlive = true;
+
     public GameObject player;
     public NavMeshAgent agent;
     public float fAttackRadius = 2.0f;
 
-    private bool bIsStunned = false;
+    public GameObject[] Patrolpoints;
+    public int PatrolLength = 3;
+    private int CurrPatrol;
+    private bool bDecision = false;
+
+    public bool bIsStunned = false;
     private bool bIsAttacking = false;
     private float fAttackRate = 0.6f;
     private bool bCanAttack = true;
 
     private Ray ray;
     private GameObject coin;
-    private Animator anim;
+    public Animator anim;
     private float fDistance;
+
+    public bool bPursue = false;
 
     public GameObject FindClosestCoin()
     {
@@ -41,6 +51,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void Attack()
     {
+        agent.enabled = false;
         bIsAttacking = true;
         // Animation
         anim.SetTrigger("Attack");
@@ -51,26 +62,38 @@ public class EnemyAI : MonoBehaviour {
     IEnumerator AttackCooldown(float _fAttackCooldown)
     {
         yield return new WaitForSeconds(_fAttackCooldown);
-        anim.SetTrigger("Run");
-        bIsAttacking = false;
-        
+        if(bIsAlive)
+        {
+            agent.enabled = true;
+            anim.SetTrigger("Run");
+            bIsAttacking = false;
+        }
     }
 
     void AttackDistance()
     {
         fDistance = (player.transform.position - transform.position).magnitude;
-        
-        if(fDistance < fAttackRadius)
+
+        if (fDistance < fAttackRadius)
         {
             if (bCanAttack == true)
             {
                 Attack();
             }
-            
+
         }
     }
 
-
+    public void SetPatrolPoints()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Level1Patrol");
+        for (int i = 0; i < Patrolpoints.Length; i++)
+        {
+            int Rand = Random.Range(0, gos.Length);
+            Patrolpoints[i] = gos[Rand];
+        }
+    }
 
     public GameObject FindPlayer()
     {
@@ -92,67 +115,162 @@ public class EnemyAI : MonoBehaviour {
         return closest;
     }
 
-    // Use this for initialization
-    void Start () {
-        player = FindPlayer();
-        StunEnemy(2.0f);
-        anim = GetComponentInChildren<Animator>();
+    public void SetPatrolPoint()
+    {
+        CurrPatrol = Random.Range(0, Patrolpoints.Length);
     }
 
-    // Update is called once per frame
-    void Update () {
+    public void patrol()
+    {
+        ray.origin = Patrolpoints[CurrPatrol].transform.position;
+        ray.direction = Vector3.down;
 
-        if (bIsStunned) {
-            return;
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            agent.SetDestination(hit.point);
         }
 
+        if((transform.position.x == Patrolpoints[CurrPatrol].transform.position.x) && (transform.position.z == Patrolpoints[CurrPatrol].transform.position.z) && !bDecision)
+        {
+            StartCoroutine(PatrolAgain());
+            bDecision = true;
+            anim.SetTrigger("Hit");
+        }
+    }
+
+    public IEnumerator PatrolAgain()
+    {
+        yield return new WaitForSeconds(2);
+        SetPatrolPoint();
+        bDecision = false;
+        anim.SetTrigger("Recover");
+    }
+
+    public void movement()
+    {
         ray.origin = player.transform.position;
         ray.direction = Vector3.down;
 
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             agent.SetDestination(hit.point);
         }
 
+        CoinMovement();
+
+        if (coin == null)
+        {
+            AttackDistance();
+        }
+    }
+
+    public void CoinMovement()
+    {
         coin = FindClosestCoin();
 
-        if(coin != null)
+        RaycastHit hit;
+
+        if (coin != null)
         {
             ray.origin = coin.transform.position;
 
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 agent.SetDestination(hit.point);
             }
 
             coin = null;
         }
+    }
 
-        if(coin == null)
+    // Use this for initialization
+    void Start () {
+        player = FindPlayer();
+        //StunEnemy(2.0f);
+        anim = GetComponentInChildren<Animator>();
+        Patrolpoints = new GameObject[PatrolLength];
+        SetPatrolPoints();
+        SetPatrolPoint();
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (agent.enabled)
         {
-            AttackDistance();
+            if (bIsStunned)
+            {
+                return;
+            }
+            else if (bPursue)
+            {
+                movement();
+            }
+            else
+            {
+                patrol();
+            }
         }
-        
+        Death();
+    }
 
+    public void Death()
+    {
+        if(iHealth <= 0 && bIsAlive)
+        {
+            bIsAlive = false;
+            agent.enabled = false;
+            anim.SetTrigger("Hit");
+            StartCoroutine(Despawn());
+        }
+    }
+
+    public IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(3.0f);
+        int r = Random.Range(1, 5);
+        if(r == 5)
+        {
+            GameObject coin = Instantiate(Resources.Load("Coin Pickup", typeof(GameObject))) as GameObject;
+            coin.transform.position = transform.position;
+        }
+        Destroy(gameObject);
     }
 
     public void StunEnemy(float _fDuration) {
         if (bIsStunned) {
             return;
         }
-        bIsStunned = true;
-        bCanAttack = false;
-        agent.isStopped = true;
-        StartCoroutine(RemoveStun(_fDuration));
+
+        if(iHealth > 0)
+        {
+            bIsStunned = true;
+            bCanAttack = false;
+            agent.enabled = false;
+            anim.ResetTrigger("Attack");
+            anim.SetTrigger("Hit");
+            StartCoroutine(RemoveStun(_fDuration));
+        }
+        
     }
 
     private IEnumerator RemoveStun(float _fDuration) {
         yield return new WaitForSeconds(_fDuration);
-        bIsStunned = false;
-        bCanAttack = true;
-        agent.isStopped = false;
+        if(iHealth > 0)
+        {
+            bIsStunned = false;
+            bCanAttack = true;
+            agent.enabled = true;
+            anim.SetTrigger("Recover");
+        }
+    }
+
+    public void DamageEnemy(int _iDamage) {
+        iHealth -= _iDamage;
     }
 
 }
