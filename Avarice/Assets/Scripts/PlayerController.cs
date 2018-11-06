@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour {
     private Slider staminaMeter;
     private Text turnUndeadText;
     private Text coinText;
+    private Slider compass;
+    private Transform compassTarget;
 
     // Use this for initialization
     void Start () {
@@ -70,6 +72,9 @@ public class PlayerController : MonoBehaviour {
 
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
+
+        // Get test target
+        compassTarget = GameObject.Find("Cube").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -120,6 +125,11 @@ public class PlayerController : MonoBehaviour {
             toxicityMeter.fillAmount = fPlayerToxicityCounter / fPlayerToxicity;
         } else {
             BleedPlayer();
+        }
+
+        // Update compass
+        if(compass && compassTarget) {
+            UpdateCompass();
         }
     }
 
@@ -294,6 +304,8 @@ public class PlayerController : MonoBehaviour {
         // Turn Undead
         turnUndeadText = playerUI.transform.Find("Number of Undead").GetComponent<Text>();
         turnUndeadText.text = iTurnUndeadUses.ToString();
+        // Compass
+        compass = playerUI.transform.Find("Compass").GetComponent<Slider>();
 
     }
 
@@ -312,6 +324,17 @@ public class PlayerController : MonoBehaviour {
         // Stamina regain delay
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
+    }
+
+    public static void SetCompassTarget(Transform target) {
+        instance.compassTarget = target;
+    }
+
+    void UpdateCompass() {
+        Vector3 toTarget = (compassTarget.position - transform.position).normalized;
+        float dot = Vector3.Dot(transform.forward, toTarget);
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        compass.value = angle;
     }
 
 }
