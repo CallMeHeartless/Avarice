@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     private float fPlayerStaminaCounter = 100.0f;
 
     [SerializeField]
-    private int iCoinDistractionCost = 50;
+    private int iCoinDistractionCost = 100;
     //[SerializeField]
     private Animator anim;
     [SerializeField]
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Confined;
 
         // Get test target
-        compassTarget = GameObject.Find("Cube").GetComponent<Transform>();
+        compassTarget = GameObject.Find("TributePile").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -337,7 +337,7 @@ public class PlayerController : MonoBehaviour {
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
         Debug.Log(dot);
         if (toTarget.x < 0) {
-            angle = -180 + angle;
+            //angle = -180 + angle;
         }
         compass.value = angle;
         //Debug.Log(angle);

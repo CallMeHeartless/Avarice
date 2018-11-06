@@ -133,7 +133,14 @@ public class EnemyAI : MonoBehaviour {
 
         if(bHeavyAttack && bPursue)
         {
-            HeavyAttack();
+            if ((fDistance < fAttackRadius) && bPursue) 
+                {
+                if (bCanAttack == true) {
+                    Attack();
+                }
+
+            }
+            //HeavyAttack();
         }
         else
         {

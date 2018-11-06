@@ -1651,7 +1651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571240803437242}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.814803, y: 1.0000001, z: 0.17514698}
+  m_LocalPosition: {x: -23.995747, y: 1.0000006, z: -44.210606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4035063062645330}
@@ -2170,7 +2170,7 @@ MonoBehaviour:
   fStaminaRegainDelay: 2
   fSprintDrain: 10
   fTurnDuration: 10
-  iCoinDistractionCost: 1
+  iCoinDistractionCost: 100
   coinThrow: {fileID: 4359963063415452}
   turnUndeadParticles: {fileID: 198953940387278812}
   coinStep: {fileID: 82727846762154262}
@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e84ebc4d82b934b8fd291d91def9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iDamage: 1
+  fDamage: 10
   attackAudio: {fileID: 0}
 --- !u!136 &136475680517555214
 CapsuleCollider:
