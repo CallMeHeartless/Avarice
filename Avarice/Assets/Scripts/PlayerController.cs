@@ -332,9 +332,15 @@ public class PlayerController : MonoBehaviour {
 
     void UpdateCompass() {
         Vector3 toTarget = (compassTarget.position - transform.position).normalized;
+        toTarget.y = 0;
         float dot = Vector3.Dot(transform.forward, toTarget);
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        Debug.Log(dot);
+        if (toTarget.x < 0) {
+            angle = -180 + angle;
+        }
         compass.value = angle;
+        //Debug.Log(angle);
     }
 
 }
