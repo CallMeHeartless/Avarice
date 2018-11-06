@@ -8,6 +8,8 @@ public class EnemyAI : MonoBehaviour {
     public int iHealth = 30;
     private bool bIsAlive = true;
 
+    public Collider Sword;
+
     public GameObject player;
     public NavMeshAgent agent;
     public float fAttackRadius = 2.0f;
@@ -31,6 +33,16 @@ public class EnemyAI : MonoBehaviour {
 
     public bool bPursue = false;
 
+    public void EnableSword()
+    {
+        Sword.enabled = true;
+    }
+
+    public void DisableSword()
+    {
+        Sword.enabled = false;
+    }
+
     public GameObject FindClosestCoin()
     {
         GameObject[] gos;
@@ -53,7 +65,7 @@ public class EnemyAI : MonoBehaviour {
 
     public void ChooseAttack()
     {
-        int i = Random.Range(1, 3);
+        int i = Random.Range(1, 5);
 
         if(i == 1)
         {
@@ -216,7 +228,10 @@ public class EnemyAI : MonoBehaviour {
 
         if (coin == null)
         {
-            AttackDistance();
+            if(bPursue == true)
+            {
+                AttackDistance();
+            }
         }
     }
 

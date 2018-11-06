@@ -1279,7 +1279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1eaaa1718cd794794141441f634e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iHealth: 3
+  iHealth: 30
+  Sword: {fileID: 0}
   player: {fileID: 0}
   agent: {fileID: 195078645104299728}
   fAttackRadius: 1.5
