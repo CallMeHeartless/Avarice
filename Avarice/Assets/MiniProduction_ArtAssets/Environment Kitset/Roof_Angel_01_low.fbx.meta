@@ -1,14 +1,24 @@
 fileFormatVersion: 2
-guid: 2bfdd4c19c9000b48a107b7bd06e4b43
+guid: a2b1dae39435edf48a2cb5f1c35167b3
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Roof_Angel_01_low
+    100004: Roof_Angel_low1
+    100006: Roof_low1
+    100008: transform1
+    100010: transform2
     400000: //RootNode
+    400002: Roof_Angel_01_low
+    400004: Roof_Angel_low1
+    400006: Roof_low1
+    400008: transform1
+    400010: transform2
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Mesh_Wall_Arch_low1
+    2300000: Roof_Angel_01_low
+    3300000: Roof_Angel_01_low
+    4300000: Roof_Angel_01_low
   externalObjects: {}
   materials:
     importMaterials: 1

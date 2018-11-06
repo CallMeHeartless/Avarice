@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2bfdd4c19c9000b48a107b7bd06e4b43
+guid: bae5f9cdf862eed4aa35eedb79896dca
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Mesh_Wall_Arch_low1
+    4300000: Roof_Angel_02_low
   externalObjects: {}
   materials:
     importMaterials: 1
