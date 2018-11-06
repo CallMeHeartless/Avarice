@@ -23,6 +23,7 @@ public class eSword : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().DamagePlayer(iDam);
+            Debug.Log("EggBoy");
             
         }
     }
