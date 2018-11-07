@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     private float fPlayerStaminaCounter = 100.0f;
 
     [SerializeField]
-    private int iCoinDistractionCost = 50;
+    private int iCoinDistractionCost = 100;
     //[SerializeField]
     private Animator anim;
     [SerializeField]
@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour {
     private Slider staminaMeter;
     private Text turnUndeadText;
     private Text coinText;
+    private Slider compass;
+    private Transform compassTarget;
 
     // Use this for initialization
     void Start () {
@@ -70,6 +72,9 @@ public class PlayerController : MonoBehaviour {
 
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
+
+        // Get test target
+        compassTarget = GameObject.Find("TributePile").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -120,6 +125,11 @@ public class PlayerController : MonoBehaviour {
             toxicityMeter.fillAmount = fPlayerToxicityCounter / fPlayerToxicity;
         } else {
             BleedPlayer();
+        }
+
+        // Update compass
+        if(compass && compassTarget) {
+            UpdateCompass();
         }
     }
 
@@ -294,6 +304,8 @@ public class PlayerController : MonoBehaviour {
         // Turn Undead
         turnUndeadText = playerUI.transform.Find("Number of Undead").GetComponent<Text>();
         turnUndeadText.text = iTurnUndeadUses.ToString();
+        // Compass
+        compass = playerUI.transform.Find("Compass").GetComponent<Slider>();
 
     }
 
@@ -305,6 +317,30 @@ public class PlayerController : MonoBehaviour {
 
     public static float GetAttackMultiplier() {
         return instance.fDamageMod;
+    }
+
+    public void DrainStamina(int _iDamage) {
+        fPlayerStaminaCounter -= _iDamage;
+        // Stamina regain delay
+        bIsRegainingStamina = false;
+        StartCoroutine(StaminaRegainDelay());
+    }
+
+    public static void SetCompassTarget(Transform target) {
+        instance.compassTarget = target;
+    }
+
+    void UpdateCompass() {
+        Vector3 toTarget = (compassTarget.position - transform.position).normalized;
+        toTarget.y = 0;
+        float dot = Vector3.Dot(transform.forward, toTarget);
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        Debug.Log(dot);
+        if (toTarget.x < 0) {
+            //angle = -180 + angle;
+        }
+        compass.value = angle;
+        //Debug.Log(angle);
     }
 
 }
