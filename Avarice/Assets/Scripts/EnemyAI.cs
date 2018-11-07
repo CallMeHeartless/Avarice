@@ -83,6 +83,7 @@ public class EnemyAI : MonoBehaviour {
         {
             agent.stoppingDistance = 15.0f;
             bHeavyAttacking = true;
+            anim.SetTrigger("Idle");
             StartCoroutine(Lunge(2.0f));
 
         }
@@ -96,7 +97,7 @@ public class EnemyAI : MonoBehaviour {
         agent.acceleration = 20.0f;
         agent.angularSpeed = 300.0f;
         agent.speed = 100.0f;
-        anim.SetTrigger("Attack");
+        anim.SetTrigger("HeavyAttack");
         bIsAttacking = true;
         StartCoroutine(AttackCooldown(fAttackRate));
     }
@@ -106,7 +107,7 @@ public class EnemyAI : MonoBehaviour {
         agent.enabled = false;
         bIsAttacking = true;
         // Animation
-        anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack02");
         // cooldown
         StartCoroutine(AttackCooldown(fAttackRate));
     }
@@ -133,14 +134,7 @@ public class EnemyAI : MonoBehaviour {
 
         if(bHeavyAttack && bPursue)
         {
-            if ((fDistance < fAttackRadius) && bPursue) 
-                {
-                if (bCanAttack == true) {
-                    Attack();
-                }
-
-            }
-            //HeavyAttack();
+            HeavyAttack();
         }
         else
         {
@@ -207,7 +201,7 @@ public class EnemyAI : MonoBehaviour {
         {
             StartCoroutine(PatrolAgain());
             bDecision = true;
-            anim.SetTrigger("Hit");
+            anim.SetTrigger("Idle");
         }
     }
 
@@ -216,7 +210,7 @@ public class EnemyAI : MonoBehaviour {
         yield return new WaitForSeconds(2);
         SetPatrolPoint();
         bDecision = false;
-        anim.SetTrigger("Recover");
+        anim.SetTrigger("Run");
     }
 
     public void movement()
@@ -267,6 +261,7 @@ public class EnemyAI : MonoBehaviour {
         ChooseAttack();
         //StunEnemy(2.0f);
         anim = GetComponentInChildren<Animator>();
+        anim.SetTrigger("Run");
         Patrolpoints = new GameObject[PatrolLength];
         SetPatrolPoints();
         SetPatrolPoint();
@@ -299,7 +294,7 @@ public class EnemyAI : MonoBehaviour {
         {
             bIsAlive = false;
             agent.enabled = false;
-            anim.SetTrigger("Hit");
+            anim.SetTrigger("Death");
             StartCoroutine(Despawn());
         }
     }
@@ -326,8 +321,8 @@ public class EnemyAI : MonoBehaviour {
             bIsStunned = true;
             bCanAttack = false;
             agent.enabled = false;
-            anim.ResetTrigger("Attack");
-            anim.SetTrigger("Hit");
+            anim.ResetTrigger("Attack02");
+            //anim.SetTrigger("Hit");
             StartCoroutine(RemoveStun(_fDuration));
         }
         
