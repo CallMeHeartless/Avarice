@@ -301,13 +301,16 @@ public class EnemyAI : MonoBehaviour {
 
     public IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return null;
         int r = Random.Range(1, 5);
-        if(r == 5)
+        if(r == 4)
         {
             GameObject coin = Instantiate(Resources.Load("Coin Pickup", typeof(GameObject))) as GameObject;
             coin.transform.position = transform.position;
         }
+        GameObject ded = Instantiate(Resources.Load("SkellyDeath", typeof(GameObject))) as GameObject;
+        ded.transform.position = transform.position;
+        ded.transform.rotation = transform.rotation;
         Destroy(gameObject);
     }
 
@@ -322,7 +325,7 @@ public class EnemyAI : MonoBehaviour {
             bCanAttack = false;
             agent.enabled = false;
             anim.ResetTrigger("Attack02");
-            //anim.SetTrigger("Hit");
+            anim.SetTrigger("Hit");
             StartCoroutine(RemoveStun(_fDuration));
         }
         
@@ -335,7 +338,7 @@ public class EnemyAI : MonoBehaviour {
             bIsStunned = false;
             bCanAttack = true;
             agent.enabled = true;
-            anim.SetTrigger("Recover");
+            anim.SetTrigger("Run");
         }
     }
 
