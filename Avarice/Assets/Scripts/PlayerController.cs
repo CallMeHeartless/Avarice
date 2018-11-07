@@ -208,7 +208,8 @@ public class PlayerController : MonoBehaviour {
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
             distraction.transform.position = transform.position + Vector3.up* 0.2f + transform.forward * 0.1f;
             distraction.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * 10, ForceMode.Impulse);
-            PlayerUIController.UpdateCoinText(iCoinCount);
+            // PlayerUIController.UpdateCoinText(iCoinCount);
+            coinText.text = iCoinCount.ToString();
         }
     }
 
