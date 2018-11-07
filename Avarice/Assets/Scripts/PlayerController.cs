@@ -216,7 +216,9 @@ public class PlayerController : MonoBehaviour {
     public void TurnUndead() {
         if(iTurnUndeadUses > 0) {
             --iTurnUndeadUses;
-            turnUndeadParticles.Play(true);
+            if (turnUndeadParticles) {
+                turnUndeadParticles.Play(true);
+            }
             // Call static game manager function
             GameManager.TurnUndead(fTurnDuration);
         }
