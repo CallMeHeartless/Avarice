@@ -325,8 +325,7 @@ public class PlayerController : MonoBehaviour {
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
     }
-<<<<<<< HEAD
-=======
+
 
     public static void SetCompassTarget(Transform target) {
         instance.compassTarget = target;
@@ -345,5 +344,5 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(angle);
     }
 
->>>>>>> master
+
 }
