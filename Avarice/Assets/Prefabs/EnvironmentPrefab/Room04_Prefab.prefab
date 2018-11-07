@@ -2359,21 +2359,6 @@ GameObject:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1799336959851814}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 20, y: -24, z: 85}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4503445805312708}
-  - {fileID: 4597185199858234}
-  - {fileID: 4675229626450752}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!4 &4059739892760006
-Transform:
-=======
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4211823971902832}
@@ -2388,7 +2373,6 @@ Transform:
   m_IsActive: 1
 --- !u!1 &1591830465064590
 GameObject:
->>>>>>> origin/Tristan
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
