@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     private float fPlayerStaminaCounter = 100.0f;
 
     [SerializeField]
-    private int iCoinDistractionCost = 50;
+    private int iCoinDistractionCost = 100;
     //[SerializeField]
     private Animator anim;
     [SerializeField]
@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour {
     private Slider staminaMeter;
     private Text turnUndeadText;
     private Text coinText;
+    private Slider compass;
+    private Transform compassTarget;
 
     // Use this for initialization
     void Start () {
@@ -70,6 +72,9 @@ public class PlayerController : MonoBehaviour {
 
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
+
+        // Get test target
+        compassTarget = GameObject.Find("TributePile").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -120,6 +125,11 @@ public class PlayerController : MonoBehaviour {
             toxicityMeter.fillAmount = fPlayerToxicityCounter / fPlayerToxicity;
         } else {
             BleedPlayer();
+        }
+
+        // Update compass
+        if(compass && compassTarget) {
+            UpdateCompass();
         }
     }
 
@@ -198,7 +208,8 @@ public class PlayerController : MonoBehaviour {
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
             distraction.transform.position = transform.position + Vector3.up* 0.2f + transform.forward * 0.1f;
             distraction.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * 10, ForceMode.Impulse);
-            PlayerUIController.UpdateCoinText(iCoinCount);
+            // PlayerUIController.UpdateCoinText(iCoinCount);
+            coinText.text = iCoinCount.ToString();
         }
     }
 
@@ -294,6 +305,8 @@ public class PlayerController : MonoBehaviour {
         // Turn Undead
         turnUndeadText = playerUI.transform.Find("Number of Undead").GetComponent<Text>();
         turnUndeadText.text = iTurnUndeadUses.ToString();
+        // Compass
+        compass = playerUI.transform.Find("Compass").GetComponent<Slider>();
 
     }
 
@@ -312,6 +325,21 @@ public class PlayerController : MonoBehaviour {
         // Stamina regain delay
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
+    }
+
+    public static void SetCompassTarget(Transform target) {
+        instance.compassTarget = target;
+    }
+
+    void UpdateCompass() {
+        Vector3 toTarget = (compassTarget.position - transform.position).normalized;
+        toTarget.y = 0;
+        float dot = Vector3.Dot(transform.forward, toTarget);
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        if (toTarget.x - transform.forward.x < 0) {
+            angle = -1 * angle;
+        }
+        compass.value = angle;
     }
 
 }
