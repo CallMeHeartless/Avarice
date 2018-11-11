@@ -158,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246914931162916}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.2665, y: 2.039, z: 1.999}
+  m_LocalPosition: {x: 9.321855, y: 0.00000012330119, z: 13.690882}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 4958161934860040}
@@ -8372,7 +8372,7 @@ ParticleSystem:
       type: 0
       properties: 0
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 108238339516975266}
     randomDistribution: 1
