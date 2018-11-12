@@ -479,12 +479,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 198852233670093780, guid: ab64efe2db816fe4385a07515424d3e7,
+    - target: {fileID: 198463766722472738, guid: ab64efe2db816fe4385a07515424d3e7,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1458446679}
-    - target: {fileID: 198463766722472738, guid: ab64efe2db816fe4385a07515424d3e7,
+    - target: {fileID: 198852233670093780, guid: ab64efe2db816fe4385a07515424d3e7,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -785,17 +785,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 198083711558212274, guid: eb92611e5a9841b40ab3d458d3905171,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 1458446679}
-    - target: {fileID: 198952533798409884, guid: eb92611e5a9841b40ab3d458d3905171,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 1458446679}
-    - target: {fileID: 198639488545369032, guid: eb92611e5a9841b40ab3d458d3905171,
+    - target: {fileID: 198752021409667468, guid: eb92611e5a9841b40ab3d458d3905171,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -805,7 +795,17 @@ Prefab:
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1458446679}
-    - target: {fileID: 198752021409667468, guid: eb92611e5a9841b40ab3d458d3905171,
+    - target: {fileID: 198639488545369032, guid: eb92611e5a9841b40ab3d458d3905171,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 1458446679}
+    - target: {fileID: 198952533798409884, guid: eb92611e5a9841b40ab3d458d3905171,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 1458446679}
+    - target: {fileID: 198083711558212274, guid: eb92611e5a9841b40ab3d458d3905171,
         type: 2}
       propertyPath: LightsModule.light
       value: 
