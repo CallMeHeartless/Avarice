@@ -8,7 +8,8 @@ public class EnemyAI : MonoBehaviour {
     public int iHealth = 30;
     private bool bIsAlive = true;
 
-    public Collider Sword;
+    public GameObject Sword;
+    public Collider SwordCollider;
 
     public GameObject player;
     public NavMeshAgent agent;
@@ -35,12 +36,12 @@ public class EnemyAI : MonoBehaviour {
 
     public void EnableSword()
     {
-        Sword.enabled = true;
+        SwordCollider.enabled = true;
     }
 
     public void DisableSword()
     {
-        Sword.enabled = false;
+        SwordCollider.enabled = false;
     }
 
     public GameObject FindClosestCoin()
@@ -126,6 +127,7 @@ public class EnemyAI : MonoBehaviour {
         yield return new WaitForSeconds(_fAttackCooldown);
         if(bIsAlive)
         {
+            SwordCollider.enabled = false;
             agent.enabled = true;
             anim.SetTrigger("Run");
             bIsAttacking = false;
@@ -143,6 +145,7 @@ public class EnemyAI : MonoBehaviour {
 
         if(bHeavyAttack && bPursue)
         {
+            SwordCollider.enabled = true;
             HeavyAttack();
         }
         else
@@ -151,6 +154,7 @@ public class EnemyAI : MonoBehaviour {
             {
                 if (bCanAttack == true)
                 {
+                    SwordCollider.enabled = true;
                     Attack();
                 }
 
@@ -274,6 +278,8 @@ public class EnemyAI : MonoBehaviour {
         Patrolpoints = new GameObject[PatrolLength];
         SetPatrolPoints();
         SetPatrolPoint();
+        SwordCollider = Sword.GetComponent<SphereCollider>();
+        SwordCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -312,7 +318,7 @@ public class EnemyAI : MonoBehaviour {
     {
         yield return null;
         int r = Random.Range(1, 5);
-        if(r == 4)
+        if(r >= 3 )
         {
             GameObject coin = Instantiate(Resources.Load("Coin Pickup", typeof(GameObject))) as GameObject;
             coin.transform.position = transform.position;
@@ -332,6 +338,7 @@ public class EnemyAI : MonoBehaviour {
         {
             bIsStunned = true;
             bCanAttack = false;
+            SwordCollider.enabled = false;
             agent.enabled = false;
             anim.ResetTrigger("Attack02");
             anim.SetTrigger("Hit");
@@ -347,7 +354,7 @@ public class EnemyAI : MonoBehaviour {
             bIsStunned = false;
             bCanAttack = true;
             agent.enabled = true;
-            anim.SetTrigger("Run");
+            anim.SetTrigger("Idle");
         }
     }
 
