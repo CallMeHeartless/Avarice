@@ -8,6 +8,7 @@ public class FlameTrapController : MonoBehaviour {
     public int FireDamage = 25;
 
     private bool isOn = false;
+    private bool wasTriggered = false;
     private ParticleSystem flameMain;
     private ParticleSystem flameMainAux;
     private ParticleSystem flameSparks;
@@ -38,6 +39,7 @@ public class FlameTrapController : MonoBehaviour {
             // Hiss noise
         } else {
             // Turn on flame
+            wasTriggered = false;
             flameMain.Play();
             flameMainAux.Play();
             // FIRE NOISE
@@ -57,7 +59,6 @@ public class FlameTrapController : MonoBehaviour {
         }
 
         if (other.CompareTag("Player")) {
-            Debug.Log("Hit player");
             other.GetComponent<PlayerController>().DamagePlayer(FireDamage);
         }else if (other.CompareTag("Enemy")) {
             if (other.GetComponent<EnemyAI>().bPursue) { // Ignore fire if just patrolling?
@@ -65,6 +66,24 @@ public class FlameTrapController : MonoBehaviour {
             }
 
         }
+    }
+
+    // This should be checked once to ensure the player still takes damage if they are within the box collider when the flame begins
+    public void OnTriggerStay(Collider other) {
+        if (wasTriggered || !isOn) {
+            return;
+        }
+        wasTriggered = true;
+
+        if (other.CompareTag("Player")) {
+            other.GetComponent<PlayerController>().DamagePlayer(FireDamage);
+        } else if (other.CompareTag("Enemy")) {
+            if (other.GetComponent<EnemyAI>().bPursue) { // Ignore fire if just patrolling?
+                other.GetComponent<EnemyAI>().DamageEnemy(FireDamage);
+            }
+
+        }
+
     }
 
 }
