@@ -8,7 +8,7 @@ public class SwordController : MonoBehaviour {
 
     public static SwordController instance;
     [SerializeField]
-    private static float fStunDuration = 2.0f;
+    private static float fStunDuration = 0.3f;
     [SerializeField]
     private AudioSource attackAudio;
     
