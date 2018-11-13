@@ -1,4 +1,8 @@
 '*.prefab' filter=lfs diff=lfs merge=lfs -text
 '*.unity' filter=lfs diff=lfs merge=lfs -text
 *.tga filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
 *.unity filter=lfs diff=lfs merge=lfs -text
+=======
+*.wav filter=lfs diff=lfs merge=lfs -text
+>>>>>>> d03953526cc8220325853d31d87f4e5a70031d57
