@@ -257,17 +257,21 @@ public class PlayerController : MonoBehaviour {
         // Animation
         AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
         string clipName = clipInfo[0].clip.name;
-        //if(anim.GetCurrentAnimatorClipInfo.animation.isplay)
-        if(iAttackCount == 0) {
-            anim.SetTrigger("Attack");
-        }else if(iAttackCount == 1) {
-            anim.SetTrigger("Attack02");
-        }else if(iAttackCount == 2) {
-            anim.SetTrigger("Attack03");
-        }
-        ++iAttackCount;
-        // cooldown
-        //StartCoroutine(AttackCooldown(fAttackRate));
+
+        // Cue animation triggers accordingly
+        //if(clipName == "Attack01") {
+        //    Debug.Log("Second attack");
+        //    anim.SetTrigger("Attack02");
+        //    anim.ResetTrigger("Attack");
+        //}else if(clipName == "Attack02") {
+        //    anim.SetTrigger("Attack03");
+        //    anim.ResetTrigger("Attack02");
+        //} else {
+        //    anim.SetTrigger("Attack");
+        //}
+        anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack02");
+        anim.SetTrigger("Attack03");
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {
