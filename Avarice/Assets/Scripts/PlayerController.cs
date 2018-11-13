@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     public float fSprintMultiplier = 1.6f;
     public float fStaminaRegainDelay = 2.0f;
     private bool bIsRegainingStamina = false;
+    public float fStaminaRegain = 3.0f;
     public float fSprintDrain = 10.0f;
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 
         // Constant stamina regen
         if(fPlayerStaminaCounter < fPlayerStamina && bIsRegainingStamina) {
-            fPlayerStaminaCounter += Time.deltaTime;
+            fPlayerStaminaCounter += Time.deltaTime * fStaminaRegain;
             if(fPlayerStaminaCounter > fPlayerStamina) {
                 fPlayerStaminaCounter = fPlayerStamina;
             }
