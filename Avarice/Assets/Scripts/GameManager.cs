@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     void Start() {
         instance = this;
         SpawnCoins();
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
