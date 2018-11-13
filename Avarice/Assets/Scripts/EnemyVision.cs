@@ -18,7 +18,7 @@ public class EnemyVision : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<EnemyAI>().bPursue = true;
+            GetComponentInParent<EnemyAI>().bPursue = true;
             //Debug.Log("EggBoy");
 
         }

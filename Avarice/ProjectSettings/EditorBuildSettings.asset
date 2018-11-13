@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UpgradeMenu.unity
     guid: b66c84dfd9de73443886bfc0d88b84d6
   - enabled: 1
+    path: Assets/Scenes/Main Level.unity
+    guid: 06de79cc58f2d3e439d69b27ef6b1417
+  - enabled: 0
     path: Assets/Scenes/TestScenes/Test-Kerry.unity
     guid: d7b83554f4bd7c04682c75f1e32e7942
   - enabled: 0

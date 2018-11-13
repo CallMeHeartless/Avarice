@@ -40,7 +40,11 @@ public class SwordController : MonoBehaviour {
                     other.GetComponent<EnemyAI>().StunEnemy(fStunDuration);
                 }
             }
-            attackAudio.Play();
+            if(attackAudio != null)
+            {
+                attackAudio.Play();
+            }
+            
             
        }
     }
