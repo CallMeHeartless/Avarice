@@ -1108,7 +1108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094466587920134}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.8031642, y: 1.0000001, z: -0.093}
+  m_LocalPosition: {x: -25.043728, y: -1.0677145, z: -32.169315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4971317439103856}
@@ -2032,6 +2032,7 @@ MonoBehaviour:
   fStaminaDrainHeavy: 25
   fSprintMultiplier: 1.6
   fStaminaRegainDelay: 2
+  fStaminaRegain: 3
   fSprintDrain: 10
   fTurnDuration: 10
   iCoinDistractionCost: 1
@@ -2066,7 +2067,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5b790679a8250c5439681bc4ffa58d87, type: 3}
+  - {fileID: 2100000, guid: 66c823b8bdf1e2144862eaf994b275e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2152,7 +2153,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5b790679a8250c5439681bc4ffa58d87, type: 3}
+  - {fileID: 2100000, guid: 9e637c8cca5404343b5d9f83edf417b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
