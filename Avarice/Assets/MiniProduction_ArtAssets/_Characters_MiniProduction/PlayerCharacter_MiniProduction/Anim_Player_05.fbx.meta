@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: 97567a9b58572e24d84406c30223c380
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Base HumanCameraBone
+    100004: Base HumanLCollarbone
+    100006: Base HumanLDigit11
+    100008: Base HumanLDigit12
+    100010: Base HumanLDigit13
+    100012: Base HumanLDigit21
+    100014: Base HumanLDigit22
+    100016: Base HumanLDigit23
+    100018: Base HumanLDigit31
+    100020: Base HumanLDigit32
+    100022: Base HumanLDigit33
+    100024: Base HumanLDigit41
+    100026: Base HumanLDigit42
+    100028: Base HumanLDigit43
+    100030: Base HumanLDigit51
+    100032: Base HumanLDigit52
+    100034: Base HumanLDigit53
+    100036: Base HumanLForearm
+    100038: Base HumanLPalm
+    100040: Base HumanLUpperarm
+    100042: Base HumanPelvis
+    100044: Base HumanRCollarbone
+    100046: Base HumanRDigit11
+    100048: Base HumanRDigit12
+    100050: Base HumanRDigit13
+    100052: Base HumanRDigit21
+    100054: Base HumanRDigit22
+    100056: Base HumanRDigit23
+    100058: Base HumanRDigit31
+    100060: Base HumanRDigit32
+    100062: Base HumanRDigit33
+    100064: Base HumanRDigit41
+    100066: Base HumanRDigit42
+    100068: Base HumanRDigit43
+    100070: Base HumanRDigit51
+    100072: Base HumanRDigit52
+    100074: Base HumanRDigit53
+    100076: Base HumanRForearm
+    100078: Base HumanRibcage
+    100080: Base HumanRPalm
+    100082: Base HumanRUpperarm
+    100084: Base HumanSpine1
+    100086: Base HumanSpine2
+    100088: Base HumanSpine3
+    100090: Base HumanSpine4
+    100092: Base HumanSword
+    100094: Camera001
+    100096: PlayerCharacter_low
+    100098: sm_PlayerSword
+    400000: //RootNode
+    400002: Base HumanCameraBone
+    400004: Base HumanLCollarbone
+    400006: Base HumanLDigit11
+    400008: Base HumanLDigit12
+    400010: Base HumanLDigit13
+    400012: Base HumanLDigit21
+    400014: Base HumanLDigit22
+    400016: Base HumanLDigit23
+    400018: Base HumanLDigit31
+    400020: Base HumanLDigit32
+    400022: Base HumanLDigit33
+    400024: Base HumanLDigit41
+    400026: Base HumanLDigit42
+    400028: Base HumanLDigit43
+    400030: Base HumanLDigit51
+    400032: Base HumanLDigit52
+    400034: Base HumanLDigit53
+    400036: Base HumanLForearm
+    400038: Base HumanLPalm
+    400040: Base HumanLUpperarm
+    400042: Base HumanPelvis
+    400044: Base HumanRCollarbone
+    400046: Base HumanRDigit11
+    400048: Base HumanRDigit12
+    400050: Base HumanRDigit13
+    400052: Base HumanRDigit21
+    400054: Base HumanRDigit22
+    400056: Base HumanRDigit23
+    400058: Base HumanRDigit31
+    400060: Base HumanRDigit32
+    400062: Base HumanRDigit33
+    400064: Base HumanRDigit41
+    400066: Base HumanRDigit42
+    400068: Base HumanRDigit43
+    400070: Base HumanRDigit51
+    400072: Base HumanRDigit52
+    400074: Base HumanRDigit53
+    400076: Base HumanRForearm
+    400078: Base HumanRibcage
+    400080: Base HumanRPalm
+    400082: Base HumanRUpperarm
+    400084: Base HumanSpine1
+    400086: Base HumanSpine2
+    400088: Base HumanSpine3
+    400090: Base HumanSpine4
+    400092: Base HumanSword
+    400094: Camera001
+    400096: PlayerCharacter_low
+    400098: sm_PlayerSword
+    2100000: lambert1
+    4300000: PlayerCharacter_low
+    4300002: sm_PlayerSword
+    7400000: Attack01
+    7400002: Attack02
+    7400004: Attack03
+    7400006: HeavyAttack
+    7400008: Idle01
+    7400010: Idle02
+    7400012: walk
+    7400014: run
+    7400016: Loot
+    7400018: throw
+    7400020: Death
+    7400022: TurnUndead
+    9500000: //RootNode
+    13700000: PlayerCharacter_low
+    13700002: sm_PlayerSword
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
