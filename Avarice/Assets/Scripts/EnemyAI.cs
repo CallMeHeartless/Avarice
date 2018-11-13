@@ -79,6 +79,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void HeavyAttack()
     {
+        /*
         if((agent.remainingDistance <= 15.0f) && !bHeavyAttacking)
         {
             agent.stoppingDistance = 15.0f;
@@ -87,6 +88,14 @@ public class EnemyAI : MonoBehaviour {
             StartCoroutine(Lunge(2.0f));
 
         }
+        */
+
+        agent.enabled = false;
+        bIsAttacking = true;
+        // Animation
+        anim.SetTrigger("Attack01");
+        // cooldown
+        StartCoroutine(AttackCooldown(fAttackRate));
     }
 
     IEnumerator Lunge(float _LungeTimer)
