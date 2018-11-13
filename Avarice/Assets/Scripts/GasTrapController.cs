@@ -8,6 +8,7 @@ public class GasTrapController : MonoBehaviour {
     public int StaminaDamage = 75;
 
     private bool isOn = false;
+    private bool wasTriggered = false;
     private ParticleSystem gasMain;
     private ParticleSystem gasSmall;
 
@@ -30,6 +31,7 @@ public class GasTrapController : MonoBehaviour {
             // Hiss noise
         } else {
             // Turn on flame
+            wasTriggered = true;
             gasMain.Play();
             // FIRE NOISE
         }
@@ -48,9 +50,20 @@ public class GasTrapController : MonoBehaviour {
         }
 
         if (other.CompareTag("Player")) {
-            Debug.Log("Hit player");
             other.GetComponent<PlayerController>().DrainStamina(StaminaDamage);
         }
+    }
+
+    public void OnTriggerStay(Collider other) {
+        if (wasTriggered || !isOn) {
+            return;
+        }
+        wasTriggered = true;
+
+        if (other.CompareTag("Player")) {
+            other.GetComponent<PlayerController>().DrainStamina(StaminaDamage);
+        } 
+
     }
 
 }

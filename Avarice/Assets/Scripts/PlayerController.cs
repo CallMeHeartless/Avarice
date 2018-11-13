@@ -328,6 +328,7 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(StaminaRegainDelay());
     }
 
+
     public static void SetCompassTarget(Transform target) {
         instance.compassTarget = target;
     }
