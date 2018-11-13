@@ -208,7 +208,8 @@ public class PlayerController : MonoBehaviour {
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
             distraction.transform.position = transform.position + Vector3.up* 0.2f + transform.forward * 0.1f;
             distraction.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * 10, ForceMode.Impulse);
-            PlayerUIController.UpdateCoinText(iCoinCount);
+            // PlayerUIController.UpdateCoinText(iCoinCount);
+            coinText.text = iCoinCount.ToString();
         }
     }
 
@@ -336,11 +337,10 @@ public class PlayerController : MonoBehaviour {
         toTarget.y = 0;
         float dot = Vector3.Dot(transform.forward, toTarget);
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        if (toTarget.x < 0) {
-            //angle = -180 + angle;
+        if (toTarget.x - transform.forward.x < 0) {
+            angle = -1 * angle;
         }
         compass.value = angle;
-        //Debug.Log(angle);
     }
 
 }
