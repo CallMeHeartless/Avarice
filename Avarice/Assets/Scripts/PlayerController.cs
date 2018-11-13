@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour {
         iLife -= _iDamage;
         healthMeter.value = iLife;
         if(iLife <= 0) {
-            SceneManager.LoadScene(0);
+            anim.SetTrigger("Death");
         }
     }
 
@@ -358,6 +358,10 @@ public class PlayerController : MonoBehaviour {
             angle = -1 * angle;
         }
         compass.value = angle;
+    }
+
+    public static void ReturnToMainMenu() {
+        SceneManager.LoadScene(0);
     }
 
 }
