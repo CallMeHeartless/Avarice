@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public float fSpeed = 5.0f;
     public float flookSensitivity = 10.0f;
     public float fAttackRate = 0.6f;
+    private int iAttackCount = 0;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
     public float fStaminaDrainLight = 15.0f;
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour {
         SetMovement();
 
 
-        if(Input.GetButton("Fire2")) { // Default key for now
+        if(Input.GetButtonDown("Fire2")) { // Default key for now
             //CreateCoinPileDistraction();
             if(iCoinCount > 0) {
                 anim.SetTrigger("Throw");
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Attack
-        if(!bIsAttacking && Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
+        if(Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
             Attack();
         }
 
@@ -254,9 +255,19 @@ public class PlayerController : MonoBehaviour {
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
         // Animation
-        anim.SetTrigger("Attack");
+        AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+        string clipName = clipInfo[0].clip.name;
+        //if(anim.GetCurrentAnimatorClipInfo.animation.isplay)
+        if(iAttackCount == 0) {
+            anim.SetTrigger("Attack");
+        }else if(iAttackCount == 1) {
+            anim.SetTrigger("Attack02");
+        }else if(iAttackCount == 2) {
+            anim.SetTrigger("Attack03");
+        }
+        ++iAttackCount;
         // cooldown
-        StartCoroutine(AttackCooldown(fAttackRate));
+        //StartCoroutine(AttackCooldown(fAttackRate));
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {
@@ -313,6 +324,7 @@ public class PlayerController : MonoBehaviour {
 
     // A small delay before the player can regain stamina
     private IEnumerator StaminaRegainDelay() {
+        bIsRegainingStamina = false;
         yield return new WaitForSeconds(fStaminaRegainDelay);
         bIsRegainingStamina = true;
     }
