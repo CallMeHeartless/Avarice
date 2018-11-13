@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public float fSpeed = 5.0f;
     public float flookSensitivity = 10.0f;
     public float fAttackRate = 0.6f;
+    private int iAttackCount = 0;
     public float fBleedInterval = 10.0f;
     public int iBleedAmount = 10;
     public float fStaminaDrainLight = 15.0f;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     public float fSprintMultiplier = 1.6f;
     public float fStaminaRegainDelay = 2.0f;
     private bool bIsRegainingStamina = false;
+    public float fStaminaRegain = 3.0f;
     public float fSprintDrain = 10.0f;
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour {
         SetMovement();
 
 
-        if(Input.GetButton("Fire2")) { // Default key for now
+        if(Input.GetButtonDown("Fire2")) { // Default key for now
             //CreateCoinPileDistraction();
             if(iCoinCount > 0) {
                 anim.SetTrigger("Throw");
@@ -101,13 +103,13 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Attack
-        if(!bIsAttacking && Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
+        if(Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
             Attack();
         }
 
         // Constant stamina regen
         if(fPlayerStaminaCounter < fPlayerStamina && bIsRegainingStamina) {
-            fPlayerStaminaCounter += Time.deltaTime;
+            fPlayerStaminaCounter += Time.deltaTime * fStaminaRegain;
             if(fPlayerStaminaCounter > fPlayerStamina) {
                 fPlayerStaminaCounter = fPlayerStamina;
             }
@@ -197,7 +199,7 @@ public class PlayerController : MonoBehaviour {
         iLife -= _iDamage;
         healthMeter.value = iLife;
         if(iLife <= 0) {
-            SceneManager.LoadScene(0);
+            anim.SetTrigger("Death");
         }
     }
 
@@ -208,7 +210,8 @@ public class PlayerController : MonoBehaviour {
             GameObject distraction = Instantiate( Resources.Load("Coin Pile Distraction", typeof(GameObject))) as GameObject;
             distraction.transform.position = transform.position + Vector3.up* 0.2f + transform.forward * 0.1f;
             distraction.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * 10, ForceMode.Impulse);
-            PlayerUIController.UpdateCoinText(iCoinCount);
+            // PlayerUIController.UpdateCoinText(iCoinCount);
+            coinText.text = iCoinCount.ToString();
         }
     }
 
@@ -252,9 +255,23 @@ public class PlayerController : MonoBehaviour {
         bIsRegainingStamina = false;
         StartCoroutine(StaminaRegainDelay());
         // Animation
+        AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+        string clipName = clipInfo[0].clip.name;
+
+        // Cue animation triggers accordingly
+        //if(clipName == "Attack01") {
+        //    Debug.Log("Second attack");
+        //    anim.SetTrigger("Attack02");
+        //    anim.ResetTrigger("Attack");
+        //}else if(clipName == "Attack02") {
+        //    anim.SetTrigger("Attack03");
+        //    anim.ResetTrigger("Attack02");
+        //} else {
+        //    anim.SetTrigger("Attack");
+        //}
         anim.SetTrigger("Attack");
-        // cooldown
-        StartCoroutine(AttackCooldown(fAttackRate));
+        anim.SetTrigger("Attack02");
+        anim.SetTrigger("Attack03");
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {
@@ -311,6 +328,7 @@ public class PlayerController : MonoBehaviour {
 
     // A small delay before the player can regain stamina
     private IEnumerator StaminaRegainDelay() {
+        bIsRegainingStamina = false;
         yield return new WaitForSeconds(fStaminaRegainDelay);
         bIsRegainingStamina = true;
     }
@@ -326,6 +344,7 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(StaminaRegainDelay());
     }
 
+
     public static void SetCompassTarget(Transform target) {
         instance.compassTarget = target;
     }
@@ -335,12 +354,14 @@ public class PlayerController : MonoBehaviour {
         toTarget.y = 0;
         float dot = Vector3.Dot(transform.forward, toTarget);
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        Debug.Log(dot);
-        if (toTarget.x < 0) {
-            //angle = -180 + angle;
+        if (toTarget.x - transform.forward.x < 0) {
+            angle = -1 * angle;
         }
         compass.value = angle;
-        //Debug.Log(angle);
+    }
+
+    public static void ReturnToMainMenu() {
+        SceneManager.LoadScene(0);
     }
 
 }

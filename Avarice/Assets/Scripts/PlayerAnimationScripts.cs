@@ -6,7 +6,7 @@ public class PlayerAnimationScripts : MonoBehaviour {
 
     PlayerController player;
 
-    void Start() {
+    void Awake() {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -16,5 +16,14 @@ public class PlayerAnimationScripts : MonoBehaviour {
 
     public void TurnUndead() {
         player.TurnUndead();
+    }
+
+    public void EndGame() {
+        StartCoroutine(DeathCountdown());
+    }
+
+    private IEnumerator DeathCountdown() {
+        yield return new WaitForSeconds(2.0f);
+        PlayerController.ReturnToMainMenu();
     }
 }
