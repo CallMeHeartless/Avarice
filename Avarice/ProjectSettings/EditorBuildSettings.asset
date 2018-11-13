@@ -8,16 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Prototype_Scenes/Main_Menu.unity
     guid: 91a191c94eb328149ba4dccf252b2a2c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UpgradeMenu.unity
     guid: b66c84dfd9de73443886bfc0d88b84d6
-  - enabled: 1
-    path: Assets/Scenes/MiniProductionScenes/LevelOne_MiniProduction.unity
-    guid: d9c7446736cc49a47b6aa5a9651a32a6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/Prototype_Scenes/Level_One.unity
     guid: 4286f773600bfda48a0b65ca15b6d27a
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/Test-Kerry.unity
+    guid: d7b83554f4bd7c04682c75f1e32e7942
   m_configObjects: {}

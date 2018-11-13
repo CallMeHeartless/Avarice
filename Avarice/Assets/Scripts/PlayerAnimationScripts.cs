@@ -6,7 +6,7 @@ public class PlayerAnimationScripts : MonoBehaviour {
 
     PlayerController player;
 
-    void Start() {
+    void Awake() {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 

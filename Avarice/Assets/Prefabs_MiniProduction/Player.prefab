@@ -724,6 +724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4075608565696982}
   - component: {fileID: 95783691816244164}
+  - component: {fileID: 114384024131588934}
   m_Layer: 0
   m_Name: Anim_Player_04
   m_TagString: Untagged
@@ -1108,7 +1109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094466587920134}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -25.043728, y: -1.0677145, z: -32.169315}
+  m_LocalPosition: {x: -24.708527, y: 1.0000006, z: -41.33912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4971317439103856}
@@ -2012,6 +2013,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114384024131588934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1834246197784812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316699de28f8f894a99e0353dce14aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114400324351447466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2035,7 +2047,7 @@ MonoBehaviour:
   fStaminaRegain: 3
   fSprintDrain: 10
   fTurnDuration: 10
-  iCoinDistractionCost: 1
+  iCoinDistractionCost: 100
   coinThrow: {fileID: 4322241203915494}
   turnUndeadParticles: {fileID: 198050898119742202}
   coinStep: {fileID: 82410522970248890}
