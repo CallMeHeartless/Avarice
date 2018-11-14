@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     private float fPlayerStaminaCounter = 100.0f;
     public GameObject PlayerSword;
     public Collider SwordCollider;
+    private bool isDead = false;
 
     [SerializeField]
     private int iCoinDistractionCost = 100;
@@ -202,7 +203,8 @@ public class PlayerController : MonoBehaviour {
         iLife -= _iDamage;
         healthMeter.value = iLife;
         AudioController.PlayerPain();
-        if(iLife <= 0) {
+        if(iLife <= 0 && !isDead) {
+            isDead = true;
             anim.SetTrigger("Death");
             velocity = Vector3.zero;
         }
