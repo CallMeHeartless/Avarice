@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour {
         SwordCollider.enabled = false;
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
 
         // Get test target
         compassTarget = GameObject.Find("TributePile").GetComponent<Transform>();
