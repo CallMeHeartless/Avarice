@@ -14,12 +14,26 @@ public class GameManager : MonoBehaviour {
     void Start() {
         instance = this;
         SpawnCoins();
+        SpawnPoints();
         //Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update() {
 
+    }
+
+    public void SpawnPoints() {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("eSpawn");
+        int i = 1;
+        foreach(GameObject go in gos) {
+            go.GetComponent<eSpawn>().group = i;
+            i++;
+            if(i > 5) {
+                i = 1;
+            }
+        }
     }
 
     //Spawn enemies after tribute collection
