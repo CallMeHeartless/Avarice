@@ -12,7 +12,7 @@ public class PlayerProgressionController : MonoBehaviour {
     // Toxicity
     [Header("Toxicity")]
     [SerializeField]
-    private float[] ToxicityValues = { 180.0f, 200.0f, 220.0f, 250.0f, 275.0f, 300.0f};
+    private float[] ToxicityValues = { 180.0f, 210.0f, 240.0f, 270.0f, 300.0f, 300.0f};
     [SerializeField]
     private int[] ToxicityUpgradeCosts = { 1000, 2000, 6000, 8000, 10000 };
     [SerializeField]
