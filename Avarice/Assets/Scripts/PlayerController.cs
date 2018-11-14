@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         LoadPlayerVariables();
         InitialisePlayerUI();
-
+        SwordCollider = PlayerSword.GetComponent<BoxCollider>();
+        SwordCollider.enabled = false;
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
 
@@ -263,13 +264,16 @@ public class PlayerController : MonoBehaviour {
         string clipName = clipInfo[0].clip.name;
 
         // Cue animation triggers accordingly
+        SwordCollider.enabled = true;
         anim.SetTrigger("Attack");
+        SwordCollider.enabled = true;
         anim.SetTrigger("Attack02");
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {
         yield return new WaitForSeconds(_fAttackCooldown);
         bIsAttacking = false;
+        SwordCollider.enabled = false;
     }
 
     private void ResetAnimations() {
