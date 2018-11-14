@@ -99,14 +99,13 @@ public class EnemyAI : MonoBehaviour {
         StartCoroutine(AttackCooldown(fAttackRate));
     }
 
-    IEnumerator Lunge(float _LungeTimer)
+    public void Lunge()
     {
-        yield return new WaitForSeconds(_LungeTimer);
         agent.enabled = true;
         agent.stoppingDistance = 1.0f;
-        agent.acceleration = 20.0f;
+        agent.acceleration = 40.0f;
         agent.angularSpeed = 300.0f;
-        agent.speed = 100.0f;
+        agent.speed = 40.0f;
         anim.SetTrigger("HeavyAttack");
         bIsAttacking = true;
         StartCoroutine(AttackCooldown(fAttackRate));
