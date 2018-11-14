@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour {
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
         healthMeter.value = iLife;
+        AudioController.PlayerPain();
         if(iLife <= 0) {
             anim.SetTrigger("Death");
         }
@@ -259,19 +260,8 @@ public class PlayerController : MonoBehaviour {
         string clipName = clipInfo[0].clip.name;
 
         // Cue animation triggers accordingly
-        //if(clipName == "Attack01") {
-        //    Debug.Log("Second attack");
-        //    anim.SetTrigger("Attack02");
-        //    anim.ResetTrigger("Attack");
-        //}else if(clipName == "Attack02") {
-        //    anim.SetTrigger("Attack03");
-        //    anim.ResetTrigger("Attack02");
-        //} else {
-        //    anim.SetTrigger("Attack");
-        //}
         anim.SetTrigger("Attack");
         anim.SetTrigger("Attack02");
-        anim.SetTrigger("Attack03");
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {
