@@ -57,9 +57,38 @@ public class AudioController : MonoBehaviour {
 
     public static void ConfirmSkillAudio() {
 
-        int index = Random.Range(0, 6);
+        int index = Random.Range(1, 6);
         string audioName = "ConfirmSkill0" + index.ToString();
         PlaySingleSound(audioName);
+    }
+
+    public static void TurnInGoldAudio() {
+        int index = Random.Range(1, 5);
+        string audioName = "GoldDeposit0" + index.ToString();
+        PlaySingleSound(audioName);
+    }
+
+    public static void GameStartAudio() {
+        int index = Random.Range(1, 3);
+        string audioName = "GameStart0" + index.ToString();
+        PlaySingleSound(audioName);
+    }
+
+    public static void UpgradeMenuWelcome() {
+        int index = Random.Range(1, 4);
+        string audioName = "PerkMenu0" + index.ToString();
+        PlaySingleSound(audioName);
+    }
+
+    public static void PlayerPain() {
+        int index = Random.Range(0, 3);
+        if(index == 0) {
+            PlaySingleSound("GRUNT_Male_Quick_mono");
+        }else if(index == 1) {
+            PlaySingleSound("GRUNT_Male_Quick_Deep_mono");
+        }else if(index == 2) {
+            PlaySingleSound("GRUNT_Male_B_Hurt_Short_04_mono");
+        }
     }
 
 }
