@@ -57,6 +57,8 @@ public class UpgradeMenuController : MonoBehaviour {
         if (!Cursor.visible) {
             Cursor.visible = true;
         }
+
+        AudioController.UpgradeMenuWelcome();
 	}
 	
 	// Update is called once per frame

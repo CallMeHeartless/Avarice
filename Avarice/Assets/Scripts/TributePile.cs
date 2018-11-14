@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TributePile : MonoBehaviour {
 
@@ -15,6 +16,11 @@ public class TributePile : MonoBehaviour {
 	void Update () {
 		if(bHasPlayer && Input.GetKeyDown(KeyCode.E)) {
             GameManager.AddCoinsToTribute(PlayerController.PayTribute());
+            AudioController.TurnInGoldAudio();
+        }
+
+        if(bHasPlayer && Input.GetKeyDown(KeyCode.K)) {
+            SceneManager.LoadScene(1);
         }
 	}
 
