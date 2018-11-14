@@ -55,7 +55,7 @@ public class AudioController : MonoBehaviour {
         return null;
     }
 
-    public void ConfirmSkillAudio() {
+    public static void ConfirmSkillAudio() {
 
         int index = Random.Range(0, 6);
         string audioName = "ConfirmSkill0" + index.ToString();
