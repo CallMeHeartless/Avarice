@@ -104,8 +104,7 @@ public class PlayerController : MonoBehaviour {
 
         // Attack
         if(Input.GetButtonDown("Fire1") && fPlayerStamina > fStaminaDrainLight) {
-            AudioController.ConfirmSkillAudio();
-            Attack();
+             Attack();
         }
 
         // Constant stamina regen
