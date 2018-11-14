@@ -103,8 +103,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Attack
-        if(Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
-            Attack();
+        if(Input.GetButtonDown("Fire1") && fPlayerStamina > fStaminaDrainLight) {
+             Attack();
         }
 
         // Constant stamina regen
