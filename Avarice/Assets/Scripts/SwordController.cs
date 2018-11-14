@@ -11,6 +11,8 @@ public class SwordController : MonoBehaviour {
     private static float fStunDuration = 0.3f;
     [SerializeField]
     private AudioSource attackAudio;
+
+    public GameObject player;
     
 
 	// Use this for initialization
@@ -44,7 +46,7 @@ public class SwordController : MonoBehaviour {
             {
                 attackAudio.Play();
             }
-            
+            player.GetComponent<PlayerController>().SwordCollider.enabled = false;
             
        }
     }
