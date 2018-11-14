@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
     private float fPlayerStaminaCounter = 100.0f;
+    public GameObject PlayerSword;
+    public Collider SwordCollider;
 
     [SerializeField]
     private int iCoinDistractionCost = 100;
@@ -103,8 +105,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Attack
-        if(Input.GetButton("Fire1") && fPlayerStamina > fStaminaDrainLight) {
-            Attack();
+        if(Input.GetButtonDown("Fire1") && fPlayerStamina > fStaminaDrainLight) {
+             Attack();
         }
 
         // Constant stamina regen
@@ -198,8 +200,10 @@ public class PlayerController : MonoBehaviour {
     public void DamagePlayer(int _iDamage) {
         iLife -= _iDamage;
         healthMeter.value = iLife;
+        AudioController.PlayerPain();
         if(iLife <= 0) {
             anim.SetTrigger("Death");
+            velocity = Vector3.zero;
         }
     }
 
@@ -259,19 +263,8 @@ public class PlayerController : MonoBehaviour {
         string clipName = clipInfo[0].clip.name;
 
         // Cue animation triggers accordingly
-        //if(clipName == "Attack01") {
-        //    Debug.Log("Second attack");
-        //    anim.SetTrigger("Attack02");
-        //    anim.ResetTrigger("Attack");
-        //}else if(clipName == "Attack02") {
-        //    anim.SetTrigger("Attack03");
-        //    anim.ResetTrigger("Attack02");
-        //} else {
-        //    anim.SetTrigger("Attack");
-        //}
         anim.SetTrigger("Attack");
         anim.SetTrigger("Attack02");
-        anim.SetTrigger("Attack03");
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {

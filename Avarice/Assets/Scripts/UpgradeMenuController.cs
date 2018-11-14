@@ -27,7 +27,7 @@ public class UpgradeMenuController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // Update coins
-        coinText = transform.Find("BackgroundImage/CoinIcon/Text").GetComponent<Text>();
+        coinText = transform.Find("BackgroundImage/Text").GetComponent<Text>();
         coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
 
         // Get parent transforms
@@ -57,6 +57,8 @@ public class UpgradeMenuController : MonoBehaviour {
         if (!Cursor.visible) {
             Cursor.visible = true;
         }
+
+        AudioController.UpgradeMenuWelcome();
 	}
 	
 	// Update is called once per frame
@@ -71,7 +73,7 @@ public class UpgradeMenuController : MonoBehaviour {
             if (PlayerProgressionController.UpgradeToxicity()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-                Debug.Log("Purchased");
+                AudioController.ConfirmSkillAudio();
                 // Rebuild menu
                 SetUpToxicity();
             }
@@ -80,7 +82,7 @@ public class UpgradeMenuController : MonoBehaviour {
             if (PlayerProgressionController.UpgradeHealth()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-
+                AudioController.ConfirmSkillAudio();
                 // Rebuild menu
                 SetUpHealth();
             }
@@ -89,7 +91,7 @@ public class UpgradeMenuController : MonoBehaviour {
             if (PlayerProgressionController.UpgradeStamina()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-
+                AudioController.ConfirmSkillAudio();
                 // Rebuild menu
                 SetUpStamina();
             }
@@ -98,7 +100,7 @@ public class UpgradeMenuController : MonoBehaviour {
             if (PlayerProgressionController.UpgradeTurnUndead()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-
+                AudioController.ConfirmSkillAudio();
                 // Rebuild menu
                 SetUpTurnUndead();
             }
@@ -107,7 +109,7 @@ public class UpgradeMenuController : MonoBehaviour {
             if (PlayerProgressionController.UpgradeDamage()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-
+                AudioController.ConfirmSkillAudio();
                 // Rebuild menu
                 SetUpDamage();
             }
@@ -116,7 +118,7 @@ public class UpgradeMenuController : MonoBehaviour {
             if (PlayerProgressionController.UpgradeCoinMultiplier()) {
                 coinText.text = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
                 // Play audio
-
+                AudioController.ConfirmSkillAudio();
                 // Rebuild menu
                 SetUpCoinMultiplier();
             }

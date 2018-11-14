@@ -2061,6 +2061,8 @@ MonoBehaviour:
   fStaminaRegain: 3
   fSprintDrain: 10
   fTurnDuration: 10
+  PlayerSword: {fileID: 1740245136336444}
+  SwordCollider: {fileID: 0}
   iCoinDistractionCost: 100
   coinThrow: {fileID: 4189329272747138}
   turnUndeadParticles: {fileID: 198440285135467522}
@@ -2078,6 +2080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fDamage: 10
   attackAudio: {fileID: 0}
+  player: {fileID: 1058963705254216}
 --- !u!136 &136739039077797640
 CapsuleCollider:
   m_ObjectHideFlags: 1
