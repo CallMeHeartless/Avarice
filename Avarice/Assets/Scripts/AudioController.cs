@@ -91,4 +91,8 @@ public class AudioController : MonoBehaviour {
         }
     }
 
+    public static void HitSkeletonAudio() {
+
+    }
+
 }
