@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
     private float fPlayerStaminaCounter = 100.0f;
+    public GameObject PlayerSword;
+    public Collider SwordCollider;
 
     [SerializeField]
     private int iCoinDistractionCost = 100;
@@ -200,6 +202,7 @@ public class PlayerController : MonoBehaviour {
         healthMeter.value = iLife;
         if(iLife <= 0) {
             anim.SetTrigger("Death");
+            velocity = Vector3.zero;
         }
     }
 
