@@ -91,23 +91,31 @@ public class EnemyAI : MonoBehaviour {
         }
         */
 
-        agent.enabled = false;
-        bIsAttacking = true;
-        // Animation
-        anim.SetTrigger("Attack01");
-        // cooldown
-        StartCoroutine(AttackCooldown(fAttackRate));
+        if ((agent.remainingDistance <= 15.0f) && !bHeavyAttacking)
+        {
+            Vector3 targetDir = player.transform.position - transform.position;
+
+            transform.rotation = Quaternion.LookRotation(targetDir);
+
+            agent.stoppingDistance = 15.0f;
+            
+            bHeavyAttacking = true;
+            
+            bIsAttacking = true;
+            // Animation
+            anim.SetTrigger("HeavyAttack");
+            // cooldown
+        }
     }
 
-    IEnumerator Lunge(float _LungeTimer)
+    public void Lunge(float _LungeTimer)
     {
-        yield return new WaitForSeconds(_LungeTimer);
         agent.enabled = true;
-        agent.stoppingDistance = 1.0f;
-        agent.acceleration = 20.0f;
         agent.angularSpeed = 300.0f;
-        agent.speed = 100.0f;
-        anim.SetTrigger("HeavyAttack");
+        agent.stoppingDistance = 1.0f;
+        agent.acceleration = 40.0f;
+        agent.angularSpeed = 40.0f;
+        agent.speed = 20.0f;
         bIsAttacking = true;
         StartCoroutine(AttackCooldown(fAttackRate));
     }
@@ -134,7 +142,7 @@ public class EnemyAI : MonoBehaviour {
             bHeavyAttacking = false;
             agent.angularSpeed = 120.0f;
             agent.acceleration = 8.0f;
-            agent.speed = 5.0f;
+            agent.speed = 4.0f;
             ChooseAttack();
         }
     }

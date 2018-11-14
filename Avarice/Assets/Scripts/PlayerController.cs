@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
     public static bool bIsAttacking = false;
     public float fTurnDuration = 10.0f;
     private float fPlayerStaminaCounter = 100.0f;
+    public GameObject PlayerSword;
+    public Collider SwordCollider;
 
     [SerializeField]
     private int iCoinDistractionCost = 100;
@@ -71,7 +73,8 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         LoadPlayerVariables();
         InitialisePlayerUI();
-
+        SwordCollider = PlayerSword.GetComponent<BoxCollider>();
+        SwordCollider.enabled = false;
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
 
@@ -201,6 +204,7 @@ public class PlayerController : MonoBehaviour {
         AudioController.PlayerPain();
         if(iLife <= 0) {
             anim.SetTrigger("Death");
+            velocity = Vector3.zero;
         }
     }
 
@@ -260,13 +264,16 @@ public class PlayerController : MonoBehaviour {
         string clipName = clipInfo[0].clip.name;
 
         // Cue animation triggers accordingly
+        SwordCollider.enabled = true;
         anim.SetTrigger("Attack");
+        SwordCollider.enabled = true;
         anim.SetTrigger("Attack02");
     }
 
     IEnumerator AttackCooldown(float _fAttackCooldown) {
         yield return new WaitForSeconds(_fAttackCooldown);
         bIsAttacking = false;
+        SwordCollider.enabled = false;
     }
 
     private void ResetAnimations() {
