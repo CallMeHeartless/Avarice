@@ -27,6 +27,10 @@ public class EnemyAI : MonoBehaviour {
     public bool bHeavyAttack = false;
     public bool bHeavyAttacking = false;
 
+    private float targetTime = 3.0f;
+    private float fTime = 0;
+
+
     private Ray ray;
     private GameObject coin;
     public Animator anim;
@@ -99,14 +103,13 @@ public class EnemyAI : MonoBehaviour {
         StartCoroutine(AttackCooldown(fAttackRate));
     }
 
-    IEnumerator Lunge(float _LungeTimer)
+    public void Lunge()
     {
-        yield return new WaitForSeconds(_LungeTimer);
         agent.enabled = true;
         agent.stoppingDistance = 1.0f;
-        agent.acceleration = 20.0f;
+        agent.acceleration = 40.0f;
         agent.angularSpeed = 300.0f;
-        agent.speed = 100.0f;
+        agent.speed = 40.0f;
         anim.SetTrigger("HeavyAttack");
         bIsAttacking = true;
         StartCoroutine(AttackCooldown(fAttackRate));
@@ -268,6 +271,16 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    public void PatrolBandAid()
+    {
+        fTime += Time.deltaTime;
+        if(fTime >= targetTime)
+        {
+            SetPatrolPoints();
+            fTime = 0;
+        }
+    }
+
     // Use this for initialization
     void Start () {
         player = FindPlayer();
@@ -284,6 +297,8 @@ public class EnemyAI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        PatrolBandAid();
 
         if (agent.enabled)
         {
