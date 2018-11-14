@@ -192,6 +192,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4773106638455966}
   - component: {fileID: 137465642246112580}
+  - component: {fileID: 135605968042995154}
+  - component: {fileID: 114108643329852638}
   m_Layer: 0
   m_Name: sm_PlayerSword
   m_TagString: Untagged
@@ -780,6 +782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4637223242666588}
   - component: {fileID: 137025499902053774}
+  - component: {fileID: 135082755823626060}
   m_Layer: 0
   m_Name: sm_PlayerSword
   m_TagString: Untagged
@@ -1100,7 +1103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094466587920134}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -24.708527, y: 1.0000006, z: -39.259}
+  m_LocalPosition: {x: 3.0664027, y: 1.0000001, z: 4.8619804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4620522067949936}
@@ -1349,7 +1352,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945722904664356}
   m_LocalRotation: {x: 0.49593154, y: 0.67998606, z: -0.11403604, w: 0.5278889}
-  m_LocalPosition: {x: 0.5618128, y: 0.9777628, z: -0.06516277}
+  m_LocalPosition: {x: 1.605, y: 1.787, z: -0.118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4264843154999440}
@@ -1418,7 +1421,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1256502417326022}
   m_LocalRotation: {x: 0.7965038, y: -0.26950547, z: -0.26581955, w: -0.47147492}
-  m_LocalPosition: {x: 0.111261755, y: 0.5242461, z: 0.16606897}
+  m_LocalPosition: {x: -0.271, y: 0.063, z: -0.965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4777956472741412}
@@ -3985,6 +3988,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114108643329852638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256502417326022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e84ebc4d82b934b8fd291d91def9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fDamage: 10
+  attackAudio: {fileID: 0}
+  player: {fileID: 1094466587920134}
 --- !u!114 &114240320112066046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4019,10 +4036,36 @@ MonoBehaviour:
   fStaminaRegain: 3
   fSprintDrain: 10
   fTurnDuration: 10
+  PlayerSword: {fileID: 1256502417326022}
+  SwordCollider: {fileID: 0}
   iCoinDistractionCost: 100
   coinThrow: {fileID: 0}
   turnUndeadParticles: {fileID: 198050898119742202}
   coinStep: {fileID: 82410522970248890}
+--- !u!135 &135082755823626060
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945722904664356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0.05517849, y: -0.015998296, z: -0.03920973}
+--- !u!135 &135605968042995154
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256502417326022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0.05517849, y: -0.015998296, z: -0.03920973}
 --- !u!136 &136447066458196392
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -4099,7 +4142,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 9e637c8cca5404343b5d9f83edf417b1, type: 2}
+  - {fileID: 2100000, guid: 97567a9b58572e24d84406c30223c380, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4123,14 +4166,14 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300002, guid: 5b790679a8250c5439681bc4ffa58d87, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 97567a9b58572e24d84406c30223c380, type: 3}
   m_Bones:
-  - {fileID: 0}
+  - {fileID: 4390695314340968}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
+  m_RootBone: {fileID: 4390695314340968}
   m_AABB:
-    m_Center: {x: -0.47218686, y: -0.00402084, z: -0.00010905415}
-    m_Extent: {x: 0.6233036, y: 0.09258727, z: 0.06504384}
+    m_Center: {x: -0.47218716, y: -0.0040204525, z: -0.00010920316}
+    m_Extent: {x: 0.62330365, y: 0.09258725, z: 0.065043904}
   m_DirtyAABB: 0
 --- !u!137 &137540730617266568
 SkinnedMeshRenderer:
