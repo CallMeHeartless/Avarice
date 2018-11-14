@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         LoadPlayerVariables();
         InitialisePlayerUI();
-        SwordCollider = PlayerSword.GetComponent<BoxCollider>();
+        SwordCollider = PlayerSword.GetComponent<SphereCollider>();
         SwordCollider.enabled = false;
         // Lock camera to screen
         Cursor.lockState = CursorLockMode.Confined;
